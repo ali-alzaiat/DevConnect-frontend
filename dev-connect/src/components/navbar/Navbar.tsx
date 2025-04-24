@@ -40,7 +40,7 @@ let Navbar = () => {
   const settingsItems = useMemo(() => {
     return [
       { name: "Profile", icon: User, path: "/profile" },
-      { name: "Settings", icon: Settings, path: "/settings" },
+      { name: "Preferences", icon: Settings, path: "/settings" },
     ];
   }, []);
 
@@ -63,7 +63,7 @@ let Navbar = () => {
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <button
-                className="!font-normal !rounded-none hover:!bg-blue-400"
+                className="!font-normal !rounded-md hover:!bg-blue-500"
                 onClick={() => onClickHandler(item.path)}
               >
                 <item.icon />
@@ -86,7 +86,7 @@ let Navbar = () => {
           {renderMenuItems(settingsItems)}
         </SidebarGroup>
       </SidebarContent>
-      <SidebarRail />
+      <SidebarRail className="hover:!border-transparent" />
     </Sidebar>
   );
 };

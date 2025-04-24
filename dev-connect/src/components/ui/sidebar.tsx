@@ -290,7 +290,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
       className={cn(
         "absolute inset-y-0 z-20 flex w-fit items-center justify-center transition-all ease-linear !p-0",
         "bg-sidebar text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-        "group-data-[side=left]:-right-6 group-data-[side=right]:-left-6",
+        "group-data-[side=left]:-right-5 group-data-[side=right]:-left-5",
         "border border-sidebar-border rounded-full shadow-md",
         className
       )}
