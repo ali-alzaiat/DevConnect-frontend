@@ -1,19 +1,32 @@
 import { Outlet } from "react-router";
 import Navbar from "../navbar/Navbar";
-import { SidebarProvider } from "../ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "../ui/sidebar";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Layout = () => {
+  const isMobile = useIsMobile();
   return (
-    <div className="App flex">
-      <div className="sidebar mr-6">
-        <SidebarProvider>
+    <SidebarProvider>
+      <div className="App flex w-full">
+        <div className="sidebar mr-6">
           <Navbar />
-        </SidebarProvider>
+        </div>
+        <div
+          className={`App-center h-screen flex-1 overflow-y-auto flex ${
+            isMobile ? "flex-col" : "flex-row"
+          }`}
+        >
+          {isMobile && (
+            <div className="navbar-trigger py-2 sticky top-0 z-10 bg-background">
+              <SidebarTrigger />
+            </div>
+          )}
+          <div className="main-content w-full py-6 flex-1">
+            <Outlet />
+          </div>
+        </div>
       </div>
-      <div className="h-screen w-full overflow-y-auto">
-        <Outlet />
-      </div>
-    </div>
+    </SidebarProvider>
   );
 };
 

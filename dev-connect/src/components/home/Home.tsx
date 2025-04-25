@@ -1,11 +1,4 @@
-import { Button } from "../ui/button";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import Card from "../general/Card";
 
 const Home = () => {
   const cards = [
@@ -27,31 +20,19 @@ const Home = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-background">
+    <div className="home-container flex flex-col items-center justify-center bg-background h-full">
       <h1 className="text-4xl font-bold mb-4">Welcome to DevConnect</h1>
       <p className="text-lg text-gray-700">
         Connect, collaborate, and build with developers worldwide.
       </p>
-      <div className="mt-6 flex flex-wrap justify-center gap-4 flex-row w-full px-3 items-center">
+      <div className="cards-container mt-6 flex flex-wrap justify-center gap-4 flex-row w-full px-3 items-center">
         {cards.map((card) => (
-          <Card className="w-1/4 h-full justify-between" key={card.title}>
-            <CardHeader>
-              <CardTitle className="text-2xl font-semibold">
-                {card.title}
-              </CardTitle>
-              <CardDescription className="text-gray-600">
-                {card.description}
-              </CardDescription>
-            </CardHeader>
-            <CardFooter>
-              <Button
-                variant="default"
-                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-              >
-                {card.buttonText}
-              </Button>
-            </CardFooter>
-          </Card>
+          <Card
+            key={card.title}
+            title={card.title}
+            description={card.description}
+            buttonText={card.buttonText}
+          />
         ))}
       </div>
     </div>

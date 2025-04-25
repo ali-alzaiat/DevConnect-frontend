@@ -21,10 +21,14 @@ import {
   Settings,
   User,
 } from "lucide-react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 let Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname.split("/")[1];
+  const isMobile = useIsMobile();
 
   const mainItems = useMemo(() => {
     return [
@@ -63,7 +67,11 @@ let Navbar = () => {
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <button
-                className="!font-normal !rounded-md hover:!bg-blue-500"
+                className={`!font-normal !rounded-md hover:!bg-menu-item-accent hover:dark:!text-white ${
+                  currentPath === item.path.split("/")[1]
+                    ? "!bg-menu-item-accent dark:!text-white"
+                    : ""
+                }`}
                 onClick={() => onClickHandler(item.path)}
               >
                 <item.icon />
@@ -86,7 +94,7 @@ let Navbar = () => {
           {renderMenuItems(settingsItems)}
         </SidebarGroup>
       </SidebarContent>
-      <SidebarRail className="hover:!border-transparent" />
+      {!isMobile && <SidebarRail className="hover:!border-transparent" />}
     </Sidebar>
   );
 };
