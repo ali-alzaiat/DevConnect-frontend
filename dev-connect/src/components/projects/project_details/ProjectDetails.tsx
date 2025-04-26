@@ -14,6 +14,7 @@ import { useLocation, useParams } from "react-router";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { ItemTypes } from "@/constants";
+import Header from "@/components/general/header";
 
 type Task = { id: number; title: string; status: string };
 
@@ -81,6 +82,8 @@ const ProjectDetails = () => {
       accept: ItemTypes.TASK,
       drop: (item: { task: Task }) => {
         const task = item.task;
+        const existingTask = tasks.find((t) => t.id === task.id);
+        if (existingTask) return;
 
         switch (task.status) {
           case "to-do":
@@ -115,8 +118,10 @@ const ProjectDetails = () => {
         ref={ref}
         className={
           className +
-          " p-6 rounded-lg shadow-md w-full max-w-60" +
-          (isOver ? " bg-gray-200" : " bg-white dark:bg-gray-800")
+          " p-6 rounded-lg shadow-md w-30/100 min-w-60" +
+          (isOver
+            ? " bg-gray-200 dark:bg-gray-500"
+            : " bg-white dark:bg-gray-800")
         }
       >
         <h2 className="text-base lg:text-xl font-semibold mb-4">{title}</h2>
@@ -133,14 +138,9 @@ const ProjectDetails = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="project-details px-3 pb-2">
-        <div className="header mb-4">
-          <h1 className="mb-2">{projectName}</h1>
-          <p className="text-secondary text-base dark:text-gray-200">
-            {projectDescription}
-          </p>
-        </div>
-        <div className="task-list flex flex-row gap-6 flex-wrap">
+      <div className="project-details">
+        <Header title={projectName} description={projectDescription} />
+        <div className="task-list flex flex-row gap-6 flex-wrap justify-between">
           <TaskList
             title="To Do"
             tasks={toDoTasks}

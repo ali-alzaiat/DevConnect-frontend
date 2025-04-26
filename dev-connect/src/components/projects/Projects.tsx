@@ -1,7 +1,7 @@
-import { Plus, SquareKanban } from "lucide-react";
+import { SquareKanban } from "lucide-react";
 import Card from "../general/Card";
-import { Button } from "../ui/button";
 import { useNavigate } from "react-router";
+import Header from "../general/header";
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -38,26 +38,18 @@ const Projects = () => {
   };
 
   return (
-    <div className="px-3">
-      <div className="header flex flex-row justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold">Projects</h1>
-        <Button
-          variant="default"
-          className="button flex flex-row items-center gap-3 m-0"
-          onClick={onClickHandler}
-        >
-          <Plus />
-          Create New Project
-        </Button>
-      </div>
-      <p className="text-lg text-gray-700">
-        Manage and collaborate on your development projects.
-      </p>
-      <div className="mt-6 flex flex-wrap justify-start gap-4 flex-row w-full px-3 items-center">
+    <div className="projects-container">
+      <Header
+        title="Projects"
+        onClickHandler={onClickHandler}
+        buttonText="Create New Project"
+        description="Manage and collaborate on your development projects."
+      />
+      <div className="mt-6 grid gap-4 flex-row w-full px-3 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
         {projects.map((project) => (
           <Card
             key={project.id}
-            icon={<SquareKanban className="w-8 h-8" />}
+            icon={<SquareKanban className="w-8 h-8 text-blue-500" />}
             title={project.name}
             description={
               <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full">

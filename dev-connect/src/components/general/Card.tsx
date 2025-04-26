@@ -14,12 +14,20 @@ type CardProps = {
   buttonText: string;
   icon?: React.ReactNode;
   onClick?: () => void;
+  className?: string;
 };
 
-const Card = ({ title, description, buttonText, icon, onClick }: CardProps) => {
+const Card = ({
+  title,
+  description,
+  buttonText,
+  icon,
+  onClick,
+  className,
+}: CardProps) => {
   return (
     <ShadcnCard
-      className="lg:w-31/100 md:w-4/10 w-9/10 justify-between h-60 "
+      className={className + "justify-between h-60 py-3 min-w-[200px] w-full"}
       key={title}
     >
       <CardHeader>
