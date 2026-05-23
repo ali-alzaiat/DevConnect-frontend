@@ -113,7 +113,7 @@ const ProjectDetails = () => {
         className={
           className +
           ' p-6 rounded-lg shadow-md w-30/100 min-w-60' +
-          (isOver ? ' bg-gray-200 dark:bg-gray-500' : ' bg-white dark:bg-gray-800')
+          (isOver ? ' bg-brand-tint text-brand' : ' bg-sunken')
         }
       >
         <h2 className="text-base lg:text-xl font-semibold mb-4">{title}</h2>
@@ -167,7 +167,7 @@ const NewTaskButton = ({ setTasks, status }: NewTaskButtonProps) => {
   return (
     <div
       key={status}
-      className="task-item mb-4 bg-gray-100 rounded-md shadow-sm hover:bg-gray-300 flex justify-center items-center cursor-pointer dark:bg-gray-700 dark:hover:bg-accent"
+      className="task-item mb-4 bg-card rounded-md shadow-sm hover:text-brand hover:bg-brand-tint flex justify-center items-center cursor-pointer"
     >
       <Dialog>
         <DialogTrigger asChild>
@@ -192,7 +192,7 @@ const NewTaskButton = ({ setTasks, status }: NewTaskButtonProps) => {
             <DialogClose asChild>
               <button
                 className={`button my-0 mx-auto ${
-                  !taskTitle && '!bg-gray-300 !cursor-default pointer-events-none'
+                  !taskTitle && 'text-disabled !cursor-default pointer-events-none'
                 }`}
                 onClick={handleAddTask}
                 disabled={!taskTitle}
@@ -221,7 +221,7 @@ const TaskItem = ({ task }: { task: Task }) => {
   return (
     <div
       ref={ref}
-      className={`task-item mb-4 bg-gray-100 rounded-md shadow-sm hover:bg-gray-300 flex justify-center items-center cursor-pointer dark:bg-gray-700 dark:hover:bg-accent ${
+      className={`task-item mb-4 bg-surface rounded-md shadow-sm flex justify-center items-center cursor-pointer hover:text-brand hover:bg-brand-tint ${
         isDragging ? 'opacity-50' : ''
       }`}
     >

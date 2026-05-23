@@ -7,7 +7,8 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem
+  SidebarMenuItem,
+  SidebarTrigger
 } from '../ui/sidebar'
 import {
   Code,
@@ -60,14 +61,15 @@ const Navbar = () => {
   ) => (
     <SidebarMenu>
       {list.map((item) => {
+        const isActive = currentPath === item.path.split('/')[1]
         return (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <button
-                className={`!font-normal !rounded-md hover:!bg-menu-item-accent hover:dark:!text-white ${
-                  currentPath === item.path.split('/')[1]
-                    ? '!bg-menu-item-accent dark:!text-white'
-                    : ''
+                className={`w-full text-left px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive
+                    ? 'bg-brand-tint text-brand font-medium'
+                    : 'text-muted-foreground hover:bg-surface-hover hover:text-primary font-normal'
                 }`}
                 onClick={() => onClickHandler(item.path)}
               >
@@ -83,7 +85,9 @@ const Navbar = () => {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader>DevConnect</SidebarHeader>
+      <SidebarHeader className="text-brand flex flex-row justify-between">
+        DevConnect <SidebarTrigger />
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>{renderMenuItems(mainItems)}</SidebarGroup>
         <SidebarGroup>

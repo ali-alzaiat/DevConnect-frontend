@@ -1,39 +1,34 @@
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+  FormMessage
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 
 const formSchema = z.object({
-  title: z
-    .string()
-    .min(1, "Title is required")
-    .max(50, "Title must be less than 50 characters"),
-  description: z
-    .string()
-    .max(200, "Description must be less than 200 characters"),
-});
+  title: z.string().min(1, 'Title is required').max(50, 'Title must be less than 50 characters'),
+  description: z.string().max(200, 'Description must be less than 200 characters')
+})
 
 const NewProject = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
-      description: "",
-    },
-  });
+      title: '',
+      description: ''
+    }
+  })
 
   return (
-    <div className="create-project-form px-3 flex flex-col w-full h-full bg-gray-50 justify-center items-center dark:bg-background">
-      <div className="form-container  bg-white p-6 rounded-lg shadow-md w-full max-w-lg dark:bg-gray-800">
+    <div className="create-project-form px-3 flex flex-col w-full h-full justify-center items-center bg-background">
+      <div className="form-container bg-card p-6 rounded-lg shadow-md w-full max-w-lg">
         <h1 className="text-3xl mb-4 font-bold">Create a New Project</h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit((data) => console.log(data))}>
@@ -74,7 +69,7 @@ const NewProject = () => {
         </Form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NewProject;
+export default NewProject

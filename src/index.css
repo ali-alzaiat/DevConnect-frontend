@@ -4,132 +4,241 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* =========================================
+   LIGHT THEME (Default)
+
+   QUICK REFERENCE
+   ─────────────────────────────────────────
+   Backgrounds     → bg-page / bg-surface / bg-surface-hover / bg-sunken / bg-overlay
+   Text            → text-primary / text-secondary / text-muted / text-disabled
+   Borders         → border-subtle / border-strong
+   Brand           → bg-brand / text-on-brand / bg-brand-tint / text-in-brand
+   Errors          → text-error / bg-error-tint
+   ─────────────────────────────────────────
+   ========================================= */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color-scheme: light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(0.98 0.011965 291.2929);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.87 0.0058 264.53);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.98 0.011965 291.2929);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.965 0.011965 291.2929);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --menu-item-accent: oklch(0.93 0.0351 291);
+
+  /* ── Backgrounds ── */
+  --page: #FAFAF8;
+  /* app/page background */
+  --surface: #FFFFFF;
+  /* cards, panels, modals */
+  --surface-hover: #F4F3EF;
+  /* hovered surface, ghost button bg */
+  --sunken: #F4F3EF;
+  /* inputs, code blocks, inset areas */
+  --overlay: #FFFFFF;
+  /* popovers, dropdowns */
+
+  /* ── Text ── */
+  --primary: #1A1917;
+  /* headings, body copy */
+  --secondary: #6B6860;
+  /* labels, captions, hints */
+  --muted: #6B6860;
+  /* alias for secondary — use for placeholder/ghost text */
+  --disabled: #B0AEA8;
+  /* disabled states */
+
+  /* ── Borders ── */
+  --subtle: #E5E3DC;
+  /* default dividers, card outlines */
+  --strong: #C4C2BB;
+  /* focused inputs, emphasized separators */
+
+  /* ── Brand ── */
+  --brand: #7C5CFC;
+  /* buttons, links, active states */
+  --brand-dim: #5B3FD4;
+  /* brand hover state */
+  --brand-tint: #EDE9FF;
+  /* brand-tinted backgrounds */
+  --on-brand: #FFFFFF;
+  /* text/icons sitting ON a brand bg */
+  --in-brand: #5438D4;
+  /* text sitting on brand-tint bg */
+
+  /* ── Errors ── */
+  --error: #C13030;
+  /* error text, destructive actions */
+  --error-tint: #FCEAEA;
+  /* error background */
+
+  /* ── shadcn aliases (keeps component libraries working) ── */
+  --background: var(--page);
+  --foreground: var(--primary);
+  --card: var(--surface);
+  --card-foreground: var(--primary);
+  --popover: var(--overlay);
+  --popover-foreground: var(--primary);
+  --secondary-bg: var(--sunken);
+  --secondary-foreground: var(--primary);
+  --muted: var(--sunken);
+  --muted-foreground: var(--secondary);
+  --accent: var(--sunken);
+  --accent-foreground: var(--primary);
+  --primary-btn: var(--brand);
+  --primary-foreground: var(--on-brand);
+  --destructive: var(--error);
+  --destructive-foreground: var(--on-brand);
+  --border: var(--subtle);
+  --input: var(--subtle);
+  --ring: var(--brand);
+  --inverse: #FFFFFF;
+
+  /* ── Sidebar ── */
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--primary);
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: var(--on-brand);
+  --sidebar-accent: var(--brand-tint);
+  --sidebar-accent-foreground: var(--in-brand);
+  --sidebar-border: var(--subtle);
+  --sidebar-ring: var(--brand);
+  --menu-item-accent: var(--brand-tint);
 }
 
-/* a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-} */
-a:hover {
-  color: #535bf2;
+/* =========================================
+   DARK THEME
+   ========================================= */
+.dark {
+  color-scheme: dark;
+
+  /* ── Backgrounds ── */
+  --page: #16151A;
+  --surface: #1F1E25;
+  --surface-hover: #2A2832;
+  --sunken: #2A2832;
+  --overlay: #1F1E25;
+
+  /* ── Text ── */
+  --primary: #F2F0EC;
+  --secondary: #8A8780;
+  --muted: #8A8780;
+  --disabled: #4A4946;
+
+  /* ── Borders ── */
+  --subtle: #343240;
+  --strong: #504E62;
+
+  /* ── Brand ── */
+  --brand: #9D80FF;
+  --brand-dim: #7C5CFC;
+  --brand-tint: #2D2560;
+  --on-brand: #FFFFFF;
+  --in-brand: #C4ADFF;
+
+  /* ── Errors ── */
+  --error: #F06060;
+  --error-tint: #3D1515;
+
+  /* ── shadcn aliases ── */
+  --background: var(--page);
+  --foreground: var(--primary);
+  --card: var(--surface);
+  --card-foreground: var(--primary);
+  --popover: var(--overlay);
+  --popover-foreground: var(--primary);
+  --secondary-bg: var(--sunken);
+  --secondary-foreground: var(--primary);
+  --muted: var(--sunken);
+  --muted-foreground: var(--secondary);
+  --accent: var(--sunken);
+  --accent-foreground: var(--primary);
+  --primary-btn: var(--brand);
+  --primary-foreground: var(--on-brand);
+  --destructive: var(--error-tint);
+  --destructive-foreground: var(--error);
+  --border: var(--subtle);
+  --input: var(--subtle);
+  --ring: var(--brand);
+  --inverse: #FFFFFF;
+
+  /* ── Sidebar ── */
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--primary);
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: var(--on-brand);
+  --sidebar-accent: var(--brand-tint);
+  --sidebar-accent-foreground: var(--in-brand);
+  --sidebar-border: var(--subtle);
+  --sidebar-ring: var(--brand);
+  --menu-item-accent: var(--brand-tint);
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-/* h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-} */
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  outline: none;
-}
-button:hover {
-  border-color: #646cff;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
+/* =========================================
+   TAILWIND v4 THEME MAPPING
+   ─────────────────────────────────────────
+   Tailwind prepends the utility type automatically.
+   --color-page    → bg-page, stroke-page, fill-page …
+   --color-primary → text-primary, bg-primary …
+   So names here are kept short with no prefix duplication.
+   ========================================= */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Backgrounds */
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-sunken: var(--sunken);
+  --color-overlay: var(--overlay);
+
+  /* Text */
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-disabled: var(--disabled);
+
+  /* Borders */
+  --color-subtle: var(--subtle);
+  --color-strong: var(--strong);
+
+  /* Brand */
+  --color-brand: var(--brand);
+  --color-brand-dim: var(--brand-dim);
+  --color-brand-tint: var(--brand-tint);
+  --color-on-brand: var(--on-brand);
+  --color-in-brand: var(--in-brand);
+
+  /* Errors */
+  --color-error: var(--error);
+  --color-error-tint: var(--error-tint);
+
+  /* shadcn aliases */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
+  --color-primary-btn: var(--primary-btn);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
+  --color-secondary-bg: var(--secondary-bg);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+  --color-inverse: var(--inverse);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -141,58 +250,20 @@ button:hover {
   --color-menu-item-accent: var(--menu-item-accent);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-  --menu-item-accent: oklch(0.62 0.2067 259.23);
-}
-
+/* =========================================
+   BASE STYLES
+   ========================================= */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-subtle outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-page text-primary;
+    margin: 0;
   }
+
   h1 {
     @apply text-3xl font-bold;
-  }
-}
-
-@layer components {
-  .button {
-    @apply mt-4 px-4 py-2 bg-blue-500 text-white rounded;
-  }
-  .button:hover {
-    @apply bg-blue-600;
   }
 }

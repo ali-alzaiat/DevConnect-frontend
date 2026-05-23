@@ -1,41 +1,26 @@
-import { JSX } from "react";
-import { Button } from "../ui/button";
-import {
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Card as ShadcnCard,
-} from "../ui/card";
+import { JSX } from 'react'
+import { Button } from '../ui/button'
+import { CardDescription, CardFooter, CardHeader, CardTitle, Card as ShadcnCard } from '../ui/card'
 
 type CardProps = {
-  title: string;
-  description: string | JSX.Element;
-  buttonText: string;
-  icon?: React.ReactNode;
-  onClick?: () => void;
-  className?: string;
-};
+  title: string
+  description: string | JSX.Element
+  buttonText: string
+  icon?: React.ReactNode
+  onClick?: () => void
+  className?: string
+}
 
-const Card = ({
-  title,
-  description,
-  buttonText,
-  icon,
-  onClick,
-  className,
-}: CardProps) => {
+const Card = ({ title, description, buttonText, icon, onClick, className }: CardProps) => {
   return (
     <ShadcnCard
-      className={className + "justify-between h-60 py-3 min-w-[200px] w-full"}
+      className={className + 'justify-between h-60 py-3 min-w-[200px] w-full'}
       key={title}
     >
       <CardHeader>
         {icon && <div className="icon h-fit mx-auto my-3">{icon}</div>}
-        <CardTitle className="text-2xl font-semibold mx-auto">
-          {title}
-        </CardTitle>
-        <CardDescription className="text-gray-600 text-center w-full overflow-hidden">
+        <CardTitle className="text-2xl font-semibold mx-auto">{title}</CardTitle>
+        <CardDescription className="text-muted-foreground text-center w-full overflow-hidden">
           {description}
         </CardDescription>
       </CardHeader>
@@ -45,7 +30,7 @@ const Card = ({
         </Button>
       </CardFooter>
     </ShadcnCard>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

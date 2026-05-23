@@ -1,64 +1,64 @@
-import { useNavigate } from "react-router";
-import Header from "../general/header";
-import { Code } from "lucide-react";
-import Card from "../general/Card";
+import { useNavigate } from 'react-router'
+import Header from '../general/header'
+import { Code } from 'lucide-react'
+import Card from '../general/Card'
 
 type Snippet = {
-  id: number;
-  name: string;
-  description: string;
-  tags: string[];
-  code: string;
-};
+  id: number
+  name: string
+  description: string
+  tags: string[]
+  code: string
+}
 
 const snippets: Snippet[] = [
   {
     id: 1,
-    name: "Snippet 1",
-    description: "Description of Snippet 1",
-    tags: ["JavaScript", "React"],
+    name: 'Snippet 1',
+    description: 'Description of Snippet 1',
+    tags: ['JavaScript', 'React'],
     code: `> This ~is not~ strikethrough, but ~~this is~~!
 
 # Hello, *world*
-`,
+`
   },
   {
     id: 2,
-    name: "Snippet 2",
-    description: "Description of Snippet 2",
-    tags: ["Python", "Flask"],
-    code: ">print('Hello, World!')",
+    name: 'Snippet 2',
+    description: 'Description of Snippet 2',
+    tags: ['Python', 'Flask'],
+    code: ">print('Hello, World!')"
   },
   {
     id: 3,
-    name: "Snippet 3",
+    name: 'Snippet 3',
     description:
-      "Description of Snippet 3Description of Snippet 3Description of Snippet 3Description of Snippet 3",
-    tags: ["Java", "Spring"],
-    code: "System.out.println('Hello, World!');",
+      'Description of Snippet 3Description of Snippet 3Description of Snippet 3Description of Snippet 3',
+    tags: ['Java', 'Spring'],
+    code: "System.out.println('Hello, World!');"
   },
   {
     id: 4,
-    name: "Snippet 4",
-    description: "Description of Snippet 4",
-    tags: ["C++", "Qt"],
-    code: "#include <iostream>\nint main() { std::cout << 'Hello, World!'; return 0; }",
+    name: 'Snippet 4',
+    description: 'Description of Snippet 4',
+    tags: ['C++', 'Qt'],
+    code: "#include <iostream>\nint main() { std::cout << 'Hello, World!'; return 0; }"
   },
   {
     id: 5,
-    name: "Snippet 5",
-    description: "Description of Snippet 5",
-    tags: ["Ruby", "Rails"],
-    code: "puts 'Hello, World!'",
-  },
-];
+    name: 'Snippet 5',
+    description: 'Description of Snippet 5',
+    tags: ['Ruby', 'Rails'],
+    code: "puts 'Hello, World!'"
+  }
+]
 
 const Snippets = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const onClickHandler = () => {
-    navigate("/snippets/create");
-  };
+    navigate('/snippets/create')
+  }
 
   return (
     <div className="snippets-container">
@@ -72,7 +72,7 @@ const Snippets = () => {
         {snippets.map((snippet) => (
           <Card
             key={snippet.id}
-            icon={<Code className="w-8 h-8 text-blue-500" />}
+            icon={<Code className="w-8 h-8 text-brand" />}
             title={snippet.name}
             description={
               <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full">
@@ -86,15 +86,15 @@ const Snippets = () => {
                   snippetName: snippet.name,
                   snippetDescription: snippet.description,
                   snippetTags: snippet.tags,
-                  snippetCode: snippet.code,
-                },
-              });
+                  snippetCode: snippet.code
+                }
+              })
             }}
           />
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Snippets;
+export default Snippets
