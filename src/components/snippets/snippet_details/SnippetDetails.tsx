@@ -1,18 +1,17 @@
-import Header from "@/components/general/header";
-import { Badge } from "@/components/ui/badge";
-import { useLocation } from "react-router";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import Header from '@/components/general/header'
+import { Badge } from '@/components/ui/badge'
+import { useLocation } from 'react-router'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 const SnippetDetails = () => {
-  let location = useLocation();
-  const { snippetName, snippetDescription, snippetCode, snippetTags } =
-    location.state || {
-      snippetName: "",
-      snippetDescription: "",
-      snippetCode: "",
-      snippetTags: [],
-    };
+  const location = useLocation()
+  const { snippetName, snippetDescription, snippetCode, snippetTags } = location.state || {
+    snippetName: '',
+    snippetDescription: '',
+    snippetCode: '',
+    snippetTags: []
+  }
   return (
     <div className="snippet-details">
       <Header title={snippetName} description={snippetDescription} />
@@ -30,7 +29,7 @@ const SnippetDetails = () => {
         </ReactMarkdown>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SnippetDetails;
+export default SnippetDetails

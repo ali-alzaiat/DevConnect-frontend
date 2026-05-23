@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo } from 'react'
 import {
   Sidebar,
   SidebarContent,
@@ -7,9 +7,8 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarRail,
-} from "../ui/sidebar";
+  SidebarMenuItem
+} from '../ui/sidebar'
 import {
   Code,
   House,
@@ -19,46 +18,44 @@ import {
   NotebookText,
   Search,
   Settings,
-  User,
-} from "lucide-react";
-import { useLocation, useNavigate } from "react-router";
-import { useIsMobile } from "@/hooks/use-mobile";
+  User
+} from 'lucide-react'
+import { useLocation, useNavigate } from 'react-router'
 
-let Navbar = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const currentPath = location.pathname.split("/")[1];
-  const isMobile = useIsMobile();
+const Navbar = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const currentPath = location.pathname.split('/')[1]
 
   const mainItems = useMemo(() => {
     return [
-      { name: "Home", icon: House, path: "/home" },
-      { name: "Chats", icon: MessageSquareMore, path: "/chats" },
-      { name: "Articles", icon: NotebookText, path: "/articles" },
-      { name: "Projects", icon: LayoutDashboard, path: "/projects" },
-      { name: "Snippets", icon: Code, path: "/snippets" },
-      { name: "Explore", icon: Search, path: "/explore" },
-    ];
-  }, []);
+      { name: 'Home', icon: House, path: '/home' },
+      { name: 'Chats', icon: MessageSquareMore, path: '/chats' },
+      { name: 'Articles', icon: NotebookText, path: '/articles' },
+      { name: 'Projects', icon: LayoutDashboard, path: '/projects' },
+      { name: 'Snippets', icon: Code, path: '/snippets' },
+      { name: 'Explore', icon: Search, path: '/explore' }
+    ]
+  }, [])
 
   const settingsItems = useMemo(() => {
     return [
-      { name: "Profile", icon: User, path: "/profile" },
-      { name: "Preferences", icon: Settings, path: "/settings" },
-    ];
-  }, []);
+      { name: 'Profile', icon: User, path: '/profile' },
+      { name: 'Preferences', icon: Settings, path: '/settings' }
+    ]
+  }, [])
 
   const onClickHandler = (path: string) => {
-    navigate(path);
-  };
+    navigate(path)
+  }
 
   const renderMenuItems = (
     list: {
-      name: string;
+      name: string
       icon: React.ForwardRefExoticComponent<
-        Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
-      >;
-      path: string;
+        Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
+      >
+      path: string
     }[]
   ) => (
     <SidebarMenu>
@@ -68,9 +65,9 @@ let Navbar = () => {
             <SidebarMenuButton asChild>
               <button
                 className={`!font-normal !rounded-md hover:!bg-menu-item-accent hover:dark:!text-white ${
-                  currentPath === item.path.split("/")[1]
-                    ? "!bg-menu-item-accent dark:!text-white"
-                    : ""
+                  currentPath === item.path.split('/')[1]
+                    ? '!bg-menu-item-accent dark:!text-white'
+                    : ''
                 }`}
                 onClick={() => onClickHandler(item.path)}
               >
@@ -79,10 +76,10 @@ let Navbar = () => {
               </button>
             </SidebarMenuButton>
           </SidebarMenuItem>
-        );
+        )
       })}
     </SidebarMenu>
-  );
+  )
 
   return (
     <Sidebar collapsible="icon">
@@ -94,9 +91,8 @@ let Navbar = () => {
           {renderMenuItems(settingsItems)}
         </SidebarGroup>
       </SidebarContent>
-      {!isMobile && <SidebarRail className="hover:!border-transparent" />}
     </Sidebar>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
