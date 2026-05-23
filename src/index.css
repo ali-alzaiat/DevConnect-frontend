@@ -9,11 +9,13 @@
 
    QUICK REFERENCE
    ─────────────────────────────────────────
-   Backgrounds     → bg-page / bg-surface / bg-surface-hover / bg-sunken / bg-overlay
-   Text            → text-primary / text-secondary / text-muted / text-disabled
-   Borders         → border-subtle / border-strong
-   Brand           → bg-brand / text-on-brand / bg-brand-tint / text-in-brand
-   Errors          → text-error / bg-error-tint
+   Backgrounds   bg-page / bg-topbar / bg-surface / bg-surface-hover / bg-sunken / bg-overlay
+   Text          text-primary / text-secondary / text-muted / text-disabled
+   Borders       border-subtle / border-strong
+   Brand         bg-brand · hover:bg-brand-hover · bg-brand-tint · text-on-brand · text-in-brand
+   Articles      bg-article · bg-article-tint · text-on-article · text-in-article
+   Snippets      bg-snippet · bg-snippet-tint · text-on-snippet · text-in-snippet
+   Errors        text-error · bg-error-tint
    ─────────────────────────────────────────
    ========================================= */
 :root {
@@ -30,11 +32,13 @@
 
   /* ── Backgrounds ── */
   --page: #FAFAF8;
-  /* app/page background */
+  /* outermost app background */
+  --topbar: #FFFFFF;
+  /* sidebar and topbar surface */
   --surface: #FFFFFF;
   /* cards, panels, modals */
   --surface-hover: #F4F3EF;
-  /* hovered surface, ghost button bg */
+  /* hovered cards, ghost button bg */
   --sunken: #F4F3EF;
   /* inputs, code blocks, inset areas */
   --overlay: #FFFFFF;
@@ -46,7 +50,7 @@
   --secondary: #6B6860;
   /* labels, captions, hints */
   --muted: #6B6860;
-  /* alias for secondary — use for placeholder/ghost text */
+  /* placeholders, ghost text */
   --disabled: #B0AEA8;
   /* disabled states */
 
@@ -56,23 +60,45 @@
   --strong: #C4C2BB;
   /* focused inputs, emphasized separators */
 
-  /* ── Brand ── */
+  /* ── Brand (purple) — projects ── */
   --brand: #7C5CFC;
   /* buttons, links, active states */
-  --brand-dim: #5B3FD4;
-  /* brand hover state */
+  --brand-hover: #5B3FD4;
+  /* hover — noticeably darker */
   --brand-tint: #EDE9FF;
-  /* brand-tinted backgrounds */
+  /* icon backgrounds, active nav bg */
   --on-brand: #FFFFFF;
-  /* text/icons sitting ON a brand bg */
+  /* text/icons ON a brand-colored bg */
   --in-brand: #5438D4;
-  /* text sitting on brand-tint bg */
+  /* text ON brand-tint bg */
+
+  /* ── Article accent (teal) ── */
+  --article: #0F6E56;
+  /* article buttons */
+  --article-hover: #085041;
+  /* article button hover */
+  --article-tint: #E1F5EE;
+  /* article icon bg, badge bg */
+  --on-article: #9FE1CB;
+  /* text ON article button */
+  --in-article: #0F6E56;
+  /* text ON article-tint bg */
+
+  /* ── Snippet accent (blue) ── */
+  --snippet: #185FA5;
+  /* snippet buttons */
+  --snippet-hover: #0C447C;
+  /* snippet button hover */
+  --snippet-tint: #E6F1FB;
+  /* snippet icon bg, badge bg */
+  --on-snippet: #B5D4F4;
+  /* text ON snippet button */
+  --in-snippet: #185FA5;
+  /* text ON snippet-tint bg */
 
   /* ── Errors ── */
   --error: #C13030;
-  /* error text, destructive actions */
   --error-tint: #FCEAEA;
-  /* error background */
 
   /* ── shadcn aliases (keeps component libraries working) ── */
   --background: var(--page);
@@ -83,7 +109,7 @@
   --popover-foreground: var(--primary);
   --secondary-bg: var(--sunken);
   --secondary-foreground: var(--primary);
-  --muted: var(--sunken);
+  --muted-bg: var(--sunken);
   --muted-foreground: var(--secondary);
   --accent: var(--sunken);
   --accent-foreground: var(--primary);
@@ -97,7 +123,7 @@
   --inverse: #FFFFFF;
 
   /* ── Sidebar ── */
-  --sidebar: var(--surface);
+  --sidebar: var(--topbar);
   --sidebar-foreground: var(--primary);
   --sidebar-primary: var(--brand);
   --sidebar-primary-foreground: var(--on-brand);
@@ -115,11 +141,18 @@
   color-scheme: dark;
 
   /* ── Backgrounds ── */
-  --page: #16151A;
+  --page: #0E0D12;
+  /* outermost app background */
+  --topbar: #13121A;
+  /* sidebar and topbar surface */
   --surface: #1F1E25;
+  /* cards, panels, modals */
   --surface-hover: #2A2832;
+  /* hovered cards, ghost button bg */
   --sunken: #2A2832;
+  /* inputs, code blocks, inset areas */
   --overlay: #1F1E25;
+  /* popovers, dropdowns */
 
   /* ── Text ── */
   --primary: #F2F0EC;
@@ -128,15 +161,29 @@
   --disabled: #4A4946;
 
   /* ── Borders ── */
-  --subtle: #343240;
-  --strong: #504E62;
+  --subtle: #2A2832;
+  --strong: #343240;
 
-  /* ── Brand ── */
-  --brand: #9D80FF;
-  --brand-dim: #7C5CFC;
+  /* ── Brand (purple) — projects ── */
+  --brand: #7C5CFC;
+  --brand-hover: #5B3FD4;
   --brand-tint: #2D2560;
   --on-brand: #FFFFFF;
   --in-brand: #C4ADFF;
+
+  /* ── Article accent (teal) ── */
+  --article: #0F6E56;
+  --article-hover: #085041;
+  --article-tint: #0A2E24;
+  --on-article: #9FE1CB;
+  --in-article: #3CB87A;
+
+  /* ── Snippet accent (blue) ── */
+  --snippet: #185FA5;
+  --snippet-hover: #0C447C;
+  --snippet-tint: #0A1E35;
+  --on-snippet: #B5D4F4;
+  --in-snippet: #6EB3F7;
 
   /* ── Errors ── */
   --error: #F06060;
@@ -151,7 +198,7 @@
   --popover-foreground: var(--primary);
   --secondary-bg: var(--sunken);
   --secondary-foreground: var(--primary);
-  --muted: var(--sunken);
+  --muted-bg: var(--sunken);
   --muted-foreground: var(--secondary);
   --accent: var(--sunken);
   --accent-foreground: var(--primary);
@@ -165,7 +212,7 @@
   --inverse: #FFFFFF;
 
   /* ── Sidebar ── */
-  --sidebar: var(--surface);
+  --sidebar: var(--topbar);
   --sidebar-foreground: var(--primary);
   --sidebar-primary: var(--brand);
   --sidebar-primary-foreground: var(--on-brand);
@@ -179,10 +226,10 @@
 /* =========================================
    TAILWIND v4 THEME MAPPING
    ─────────────────────────────────────────
-   Tailwind prepends the utility type automatically.
-   --color-page    → bg-page, stroke-page, fill-page …
-   --color-primary → text-primary, bg-primary …
-   So names here are kept short with no prefix duplication.
+   Tailwind prepends the utility type automatically:
+     --color-page      → bg-page, text-page …
+     --color-primary   → text-primary, bg-primary …
+   Names are kept short — no duplicated prefixes.
    ========================================= */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -192,6 +239,7 @@
 
   /* Backgrounds */
   --color-page: var(--page);
+  --color-topbar: var(--topbar);
   --color-surface: var(--surface);
   --color-surface-hover: var(--surface-hover);
   --color-sunken: var(--sunken);
@@ -209,10 +257,24 @@
 
   /* Brand */
   --color-brand: var(--brand);
-  --color-brand-dim: var(--brand-dim);
+  --color-brand-hover: var(--brand-hover);
   --color-brand-tint: var(--brand-tint);
   --color-on-brand: var(--on-brand);
   --color-in-brand: var(--in-brand);
+
+  /* Articles */
+  --color-article: var(--article);
+  --color-article-hover: var(--article-hover);
+  --color-article-tint: var(--article-tint);
+  --color-on-article: var(--on-article);
+  --color-in-article: var(--in-article);
+
+  /* Snippets */
+  --color-snippet: var(--snippet);
+  --color-snippet-hover: var(--snippet-hover);
+  --color-snippet-tint: var(--snippet-tint);
+  --color-on-snippet: var(--on-snippet);
+  --color-in-snippet: var(--in-snippet);
 
   /* Errors */
   --color-error: var(--error);
@@ -229,7 +291,7 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary-bg: var(--secondary-bg);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
+  --color-muted-bg: var(--muted-bg);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);

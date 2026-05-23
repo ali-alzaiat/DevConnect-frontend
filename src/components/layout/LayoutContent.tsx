@@ -16,7 +16,7 @@ const LayoutContent = () => {
             <SidebarTrigger />
           </div>
         )}
-        <div className="main-content w-full py-6 px-3 flex-1">
+        <div className="main-content w-full py-6 px-3 flex-1 h-fit">
           <Outlet />
         </div>
       </div>

@@ -1,7 +1,10 @@
-import { SquareKanban } from 'lucide-react'
 import Card from '../general/Card'
 import { useNavigate } from 'react-router'
 import Header from '../general/header'
+import ProjectAvatar from './ProjectAvatar/ProjectAvatar'
+import { CheckIcon, UsersIcon, ClockIcon } from 'lucide-react'
+import StatusBadge from './StatusBadge/StatusBadge'
+import { ProjectStatus } from './StatusBadge/constants'
 
 const Projects = () => {
   const navigate = useNavigate()
@@ -45,18 +48,18 @@ const Projects = () => {
         buttonText="Create New Project"
         description="Manage and collaborate on your development projects."
       />
-      <div className="mt-6 grid gap-4 flex-row w-full px-3 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+      <div className="mt-6 grid gap-4 flex-row w-full px-3 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
         {projects.map((project) => (
           <Card
+            className="h-45 min-w-[300px]"
             key={project.id}
-            icon={<SquareKanban className="w-8 h-8 text-brand" />}
+            icon={<ProjectAvatar name={project.name} index={project.id} />}
             title={project.name}
             description={
               <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full">
                 {project.description}
               </div>
             }
-            buttonText="Open"
             onClick={() => {
               navigate(`/projects/${project.id}`, {
                 state: {
@@ -65,6 +68,24 @@ const Projects = () => {
                 }
               })
             }}
+            headerClassName="flex items-center gap-6 flex-1 min-h-0"
+            iconClassName="!p-0"
+            footer={
+              <div className="flex items-center justify-between w-full">
+                <div className="flex items-center gap-3 text-disabled text-xs">
+                  <span className="flex items-center gap-1">
+                    <CheckIcon className="size-3" /> 4 tasks
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <UsersIcon className="size-3" /> 3
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <ClockIcon className="size-3" /> 2h ago
+                  </span>
+                </div>
+                <StatusBadge status={ProjectStatus.Active} />
+              </div>
+            }
           />
         ))}
       </div>

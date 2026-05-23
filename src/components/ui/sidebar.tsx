@@ -4,7 +4,7 @@ import { type VariantProps, cva } from 'class-variance-authority'
 import { ChevronLeft, ChevronRight, Menu } from 'lucide-react'
 
 import { useIsMobile } from '@/hooks/use-mobile'
-import { cn } from '@/lib/utils'
+import { cn, getCookie } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
@@ -54,7 +54,13 @@ function SidebarProvider({
 
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
-  const [_open, _setOpen] = React.useState(defaultOpen)
+  const [_open, _setOpen] = React.useState(() => {
+    const cookieValue = getCookie(SIDEBAR_COOKIE_NAME)
+    if (cookieValue === null) {
+      return defaultOpen
+    }
+    return cookieValue === 'true'
+  })
   const open = openProp ?? _open
   const setOpen = React.useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {

@@ -66,7 +66,7 @@ const Navbar = () => {
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <button
-                className={`w-full text-left px-3 py-2 rounded-md transition-colors duration-200 ${
+                className={`w-full text-left px-3 py-2 rounded-md transition-colors duration-200 hover:cursor-pointer ${
                   isActive
                     ? 'bg-brand-tint text-brand font-medium'
                     : 'text-muted-foreground hover:bg-surface-hover hover:text-primary font-normal'

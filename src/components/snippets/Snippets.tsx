@@ -72,7 +72,7 @@ const Snippets = () => {
         {snippets.map((snippet) => (
           <Card
             key={snippet.id}
-            icon={<Code className="w-8 h-8 text-brand" />}
+            icon={<Code className="w-8 h-8" />}
             title={snippet.name}
             description={
               <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full">
@@ -90,6 +90,7 @@ const Snippets = () => {
                 }
               })
             }}
+            iconClassName="bg-snippet-tint text-in-snippet"
           />
         ))}
       </div>
