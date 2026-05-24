@@ -1,6 +1,6 @@
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Form,
   FormControl,
@@ -8,14 +8,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 const formSchema = z.object({
   title: z.string().min(1, 'Title is required').max(50, 'Title must be less than 50 characters'),
   description: z.string().max(200, 'Description must be less than 200 characters')
-})
+});
 
 const NewProject = () => {
   const form = useForm({
@@ -24,7 +24,7 @@ const NewProject = () => {
       title: '',
       description: ''
     }
-  })
+  });
 
   return (
     <div className="create-project-form px-3 flex flex-col w-full h-full justify-center items-center bg-background">
@@ -69,7 +69,7 @@ const NewProject = () => {
         </Form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NewProject
+export default NewProject;

@@ -1,15 +1,15 @@
-import { lazy, Suspense } from 'react'
-import { Route, Routes } from 'react-router'
-import './App.css'
-import Layout from './components/layout/Layout'
+import { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router';
+import './App.css';
+import Layout from './components/layout/Layout';
 
-const Home = lazy(() => import('./components/home/Home'))
-const Projects = lazy(() => import('./components/projects/Projects'))
-const NewProject = lazy(() => import('./components/projects/new_project/NewProject'))
-const ProjectDetails = lazy(() => import('./components/projects/project_details/ProjectDetails'))
-const Snippets = lazy(() => import('./components/snippets/Snippets'))
-const SnippetDetails = lazy(() => import('./components/snippets/snippet_details/SnippetDetails'))
-const Preferences = lazy(() => import('./components/Settings/Preferences'))
+const Home = lazy(() => import('./components/home/Home'));
+const Projects = lazy(() => import('./components/projects/Projects'));
+const NewProject = lazy(() => import('./components/projects/NewProject/NewProject'));
+const ProjectDetails = lazy(() => import('./components/projects/ProjectDetails/ProjectDetails'));
+const Snippets = lazy(() => import('./components/snippets/Snippets'));
+const SnippetDetails = lazy(() => import('./components/snippets/SnippetDetails/SnippetDetails'));
+const Preferences = lazy(() => import('./components/Settings/Preferences'));
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
         <Route path="/reset-password" element={<div>Reset Password</div>} />
       </Routes>
     </Suspense>
-  )
+  );
 }
 
-export default App
+export default App;
