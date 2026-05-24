@@ -1,15 +1,18 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router";
-import "./index.css";
-import App from "./App.tsx";
-import { ThemeProvider } from "./components/general/ThemeProvider.tsx";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router';
+import './index.css';
+import App from './App.tsx';
+import { ThemeProvider } from './components/general/ThemeProvider.tsx';
+import { TooltipProvider } from './components/ui/tooltip.tsx';
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>
       <BrowserRouter>
-        <App />
+        <TooltipProvider delayDuration={0}>
+          <App />
+        </TooltipProvider>
       </BrowserRouter>
     </ThemeProvider>
   </StrictMode>

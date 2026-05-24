@@ -16,6 +16,8 @@
    Articles      bg-article · bg-article-tint · text-on-article · text-in-article
    Snippets      bg-snippet · bg-snippet-tint · text-on-snippet · text-in-snippet
    Errors        text-error · bg-error-tint
+   Priority tags bg-priority-high-tint · text-priority-high (also mid / low)
+   Type tags     bg-tag-feature-tint · text-tag-feature (also bug / docs)
    ─────────────────────────────────────────
    ========================================= */
 :root {
@@ -33,7 +35,7 @@
   /* ── Backgrounds ── */
   --page: #FAFAF8;
   /* outermost app background */
-  --topbar: #FFFFFF;
+  --topbar: #F4F3EF;
   /* sidebar and topbar surface */
   --surface: #FFFFFF;
   /* cards, panels, modals */
@@ -96,9 +98,29 @@
   --in-snippet: #185FA5;
   /* text ON snippet-tint bg */
 
+  /* ── Tag: priority ── */
+  --priority-high: #C13030;
+  --priority-high-tint: #FCEAEA;
+  --priority-mid: #A45E00;
+  --priority-mid-tint: #FEF3DC;
+  --priority-low: #0F6E56;
+  --priority-low-tint: #E1F5EE;
+
+  /* ── Tag: type ── */
+  --tag-feature: #5438D4;
+  --tag-feature-tint: #EDE9FF;
+  --tag-bug: #C13030;
+  --tag-bug-tint: #FCEAEA;
+  --tag-docs: #185FA5;
+  --tag-docs-tint: #E6F1FB;
+
   /* ── Errors ── */
   --error: #C13030;
   --error-tint: #FCEAEA;
+
+  /* -- Tooltip -- */
+  --tooltip: #1A1917;
+  --on-tooltip: #F2F0EC;
 
   /* ── shadcn aliases (keeps component libraries working) ── */
   --background: var(--page);
@@ -185,9 +207,29 @@
   --on-snippet: #B5D4F4;
   --in-snippet: #6EB3F7;
 
+  /* ── Tag: priority ── */
+  --priority-high: #F06060;
+  --priority-high-tint: #3D1515;
+  --priority-mid: #EF9F27;
+  --priority-mid-tint: #332500;
+  --priority-low: #3CB87A;
+  --priority-low-tint: #0A2E24;
+
+  /* ── Tag: type ── */
+  --tag-feature: #C4ADFF;
+  --tag-feature-tint: #2D2560;
+  --tag-bug: #F06060;
+  --tag-bug-tint: #3D1515;
+  --tag-docs: #6EB3F7;
+  --tag-docs-tint: #0A1E35;
+
   /* ── Errors ── */
   --error: #F06060;
   --error-tint: #3D1515;
+
+  /* -- Tooltip -- */
+  --tooltip: #2A2832;
+  --on-tooltip: #F2F0EC;
 
   /* ── shadcn aliases ── */
   --background: var(--page);
@@ -204,8 +246,8 @@
   --accent-foreground: var(--primary);
   --primary-btn: var(--brand);
   --primary-foreground: var(--on-brand);
-  --destructive: var(--error-tint);
-  --destructive-foreground: var(--error);
+  --destructive: var(--error);
+  --destructive-foreground: var(--error-tint);
   --border: var(--subtle);
   --input: var(--subtle);
   --ring: var(--brand);
@@ -279,6 +321,26 @@
   /* Errors */
   --color-error: var(--error);
   --color-error-tint: var(--error-tint);
+
+  /* Tag: priority */
+  --color-priority-high: var(--priority-high);
+  --color-priority-high-tint: var(--priority-high-tint);
+  --color-priority-mid: var(--priority-mid);
+  --color-priority-mid-tint: var(--priority-mid-tint);
+  --color-priority-low: var(--priority-low);
+  --color-priority-low-tint: var(--priority-low-tint);
+
+  /* Tag: type */
+  --color-tag-feature: var(--tag-feature);
+  --color-tag-feature-tint: var(--tag-feature-tint);
+  --color-tag-bug: var(--tag-bug);
+  --color-tag-bug-tint: var(--tag-bug-tint);
+  --color-tag-docs: var(--tag-docs);
+  --color-tag-docs-tint: var(--tag-docs-tint);
+
+  /* Tooltip */
+  --color-tooltip: var(--tooltip);
+  --color-on-tooltip: var(--on-tooltip);
 
   /* shadcn aliases */
   --color-background: var(--background);

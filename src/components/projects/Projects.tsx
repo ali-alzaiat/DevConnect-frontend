@@ -1,13 +1,13 @@
-import Card from '../general/Card'
-import { useNavigate } from 'react-router'
-import Header from '../general/header'
-import ProjectAvatar from './ProjectAvatar/ProjectAvatar'
-import { CheckIcon, UsersIcon, ClockIcon } from 'lucide-react'
-import StatusBadge from './StatusBadge/StatusBadge'
-import { ProjectStatus } from './StatusBadge/constants'
+import Card from '../general/Card';
+import { useNavigate } from 'react-router';
+import Header from '../general/header';
+import { CheckIcon, UsersIcon, ClockIcon } from 'lucide-react';
+import StatusBadge from './StatusBadge/StatusBadge';
+import { ProjectStatus } from './StatusBadge/constants';
+import InitialsAvatar from '../general/InitialsAvatar';
 
 const Projects = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const projects = [
     { id: 1, name: 'Project 1', description: 'Description of Project 1' },
     { id: 2, name: 'Project 2', description: 'Description of Project 2' },
@@ -34,11 +34,11 @@ const Projects = () => {
     { id: 18, name: 'Project 18', description: 'Description of Project 18' },
     { id: 19, name: 'Project 19', description: 'Description of Project 19' },
     { id: 20, name: 'Project 20', description: 'Description of Project 20' }
-  ]
+  ];
 
   const onClickHandler = () => {
-    navigate('/projects/create')
-  }
+    navigate('/projects/create');
+  };
 
   return (
     <div className="projects-container">
@@ -53,7 +53,14 @@ const Projects = () => {
           <Card
             className="h-45 min-w-[300px]"
             key={project.id}
-            icon={<ProjectAvatar name={project.name} index={project.id} />}
+            icon={
+              <InitialsAvatar
+                name={project.name}
+                index={project.id}
+                className="rounded-lg size-10"
+                textSize="text-base"
+              />
+            }
             title={project.name}
             description={
               <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full">
@@ -66,7 +73,7 @@ const Projects = () => {
                   projectName: project.name,
                   projectDescription: project.description
                 }
-              })
+              });
             }}
             headerClassName="flex items-center gap-6 flex-1 min-h-0"
             iconClassName="!p-0"
@@ -90,7 +97,7 @@ const Projects = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;
