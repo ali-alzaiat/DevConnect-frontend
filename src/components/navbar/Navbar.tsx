@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo } from 'react';
 import {
   Sidebar,
   SidebarContent,
@@ -9,24 +9,27 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarTrigger
-} from '../ui/sidebar'
+} from '../ui/sidebar';
 import {
   Code,
   House,
   LayoutDashboard,
   LucideProps,
+  MessageSquareCode,
   MessageSquareMore,
   NotebookText,
   Search,
   Settings,
   User
-} from 'lucide-react'
-import { useLocation, useNavigate } from 'react-router'
+} from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router';
+import { useSidebar } from '@/contexts/SidebarContext';
 
 const Navbar = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const currentPath = location.pathname.split('/')[1]
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname.split('/')[1];
+  const { open } = useSidebar();
 
   const mainItems = useMemo(() => {
     return [
@@ -36,32 +39,32 @@ const Navbar = () => {
       { name: 'Projects', icon: LayoutDashboard, path: '/projects' },
       { name: 'Snippets', icon: Code, path: '/snippets' },
       { name: 'Explore', icon: Search, path: '/explore' }
-    ]
-  }, [])
+    ];
+  }, []);
 
   const settingsItems = useMemo(() => {
     return [
       { name: 'Profile', icon: User, path: '/profile' },
       { name: 'Preferences', icon: Settings, path: '/settings' }
-    ]
-  }, [])
+    ];
+  }, []);
 
   const onClickHandler = (path: string) => {
-    navigate(path)
-  }
+    navigate(path);
+  };
 
   const renderMenuItems = (
     list: {
-      name: string
+      name: string;
       icon: React.ForwardRefExoticComponent<
         Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
-      >
-      path: string
+      >;
+      path: string;
     }[]
   ) => (
     <SidebarMenu>
       {list.map((item) => {
-        const isActive = currentPath === item.path.split('/')[1]
+        const isActive = currentPath === item.path.split('/')[1];
         return (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
@@ -78,17 +81,25 @@ const Navbar = () => {
               </button>
             </SidebarMenuButton>
           </SidebarMenuItem>
-        )
+        );
       })}
     </SidebarMenu>
-  )
+  );
 
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="text-brand flex flex-row justify-between">
-        DevConnect <SidebarTrigger />
+        <div className="flex items-center gap-2 logo pl-2">
+          <MessageSquareCode className="h-6 w-6 bg-brand p-1 text-on-brand" /> DevConnect
+        </div>
+        <SidebarTrigger />
       </SidebarHeader>
       <SidebarContent>
+        {!open && (
+          <SidebarGroup>
+            <MessageSquareCode className="bg-brand p-1 text-on-brand ml-1" />
+          </SidebarGroup>
+        )}
         <SidebarGroup>{renderMenuItems(mainItems)}</SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel>Settings</SidebarGroupLabel>
@@ -96,7 +107,7 @@ const Navbar = () => {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
