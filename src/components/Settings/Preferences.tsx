@@ -1,14 +1,14 @@
-import { Moon } from 'lucide-react'
-import Header from '../general/header'
-import { Switch } from '../ui/switch'
-import { useTheme } from '../../hooks/useTheme'
+import { Moon } from 'lucide-react';
+import Header from '../general/header';
+import { Switch } from '../ui/switch';
+import { useTheme } from '../../hooks/useTheme';
 
 const Preferences = () => {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
 
   const onCheckedChange = (checked: boolean) => {
-    setTheme(checked ? 'dark' : 'light')
-  }
+    setTheme(checked ? 'dark' : 'light');
+  };
 
   const ListCard = () => {
     return (
@@ -24,20 +24,18 @@ const Preferences = () => {
         </div>
         <Switch checked={theme === 'dark'} onCheckedChange={onCheckedChange} className="!p-0" />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className="px-3">
       <Header title="Preferences" description="Customize your DevConnect experience." />
       <div>
         <h2 className="text-xl font-semi-bold mb-4">Theme</h2>
-        <div className="flex flex-col gap-4 w-8/10 px-3 items-center">
-          <ListCard />
-        </div>
+        <div className="flex flex-col gap-4 w-8/10 px-3 items-center">{ListCard()}</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Preferences
+export default Preferences;

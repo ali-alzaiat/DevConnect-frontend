@@ -1,5 +1,5 @@
 import { ItemTypes } from '@/constants';
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback } from 'react';
 import { useDrop } from 'react-dnd';
 import { Task, TaskFormData } from './ProjectDetails';
 import { increseCount } from './initialTasks';
@@ -10,29 +10,21 @@ export const TaskList = ({
   title,
   statusKey,
   className,
-  boardTasks,
+  columnTasks,
   setBoardTasks
 }: {
   title: string;
   statusKey: string;
   className: string;
-  boardTasks: Task[];
+  columnTasks: Task[];
   setBoardTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const columnTasks = useMemo(
-    () => boardTasks.filter((task) => task.status === statusKey),
-    [boardTasks, statusKey]
-  );
-
   const handleAddTask = (newTaskData: TaskFormData, status: string) => {
     const d = newTaskData.dueDate;
     const year = d.getFullYear();
     const month = String(d.getMonth() + 1).padStart(2, '0');
     const day = String(d.getDate()).padStart(2, '0');
-    const lastTask = boardTasks
-      .filter((task) => task.status === status)
-      .sort((a, b) => b.order - a.order)[0];
+    const lastTask = columnTasks.sort((a, b) => b.order - a.order)[0];
     const newTask: Task = {
       id: increseCount(),
       title: newTaskData.title,
@@ -110,15 +102,24 @@ export const TaskList = ({
     [moveCard]
   );
 
-  drop(ref);
+  const setNodeRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      drop(node);
+    },
+    [drop]
+  );
+
+  const renderColumnTasks = useCallback(() => {
+    return columnTasks.sort((a, b) => a.order - b.order).map(renderTaskItem);
+  }, [columnTasks, renderTaskItem]);
 
   return (
     <div
-      ref={ref}
+      ref={setNodeRef}
       className={`${className} p-6 rounded-lg shadow-md w-30/100 min-w-60 ${isOver ? 'bg-brand-tint text-brand' : 'bg-surface'}`}
     >
       <h2 className="text-base lg:text-xl font-semibold mb-4">{title}</h2>
-      {columnTasks.sort((a, b) => a.order - b.order).map(renderTaskItem)}
+      {renderColumnTasks()}
       <NewTaskButton statusKey={statusKey} onAddTask={handleAddTask} />
     </div>
   );

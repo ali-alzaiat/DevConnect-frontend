@@ -2,7 +2,7 @@ import InitialsAvatar from '@/components/general/InitialsAvatar';
 import { ItemTypes } from '@/constants';
 import clsx from 'clsx';
 import { CalendarIcon } from 'lucide-react';
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { useDrop, useDrag } from 'react-dnd';
 import TaskPriorityTag from '../TaskPriorityTag/TaskPriorityTag';
 import TaskTypeTag from '../TaskTypeTag/TaskTypeTag';
@@ -86,11 +86,18 @@ export const TaskItem = ({
       isDragging: monitor.isDragging()
     })
   }));
-  drag(drop(ref));
+
+  const setNodeRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      ref.current = node;
+      drag(drop(node));
+    },
+    [drag, drop]
+  );
 
   return (
     <div
-      ref={ref}
+      ref={setNodeRef}
       data-handler-id={handlerId}
       className={`mb-2 bg-topbar rounded-md border border-transparent hover:border-brand transition-colors p-3 cursor-pointer ${isDragging ? 'opacity-50' : ''}`}
     >
