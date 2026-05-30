@@ -36,7 +36,7 @@ const SignUp = () => {
   return (
     <div className="flex flex-col h-screen">
       <div className="flex flex-1 items-center justify-center">
-        <div className="flex flex-col items-start justify-start gap-4 flex-1 p-10 h-full">
+        <div className="flex flex-col justify-center gap-4 flex-1 p-10 h-full bg-surface border-r-2 border-subtle shadow-lg">
           <Logo />
           <h1 className="text-3xl font-bold">Join the Dev Connect community!</h1>
           <p className="text-secondary">

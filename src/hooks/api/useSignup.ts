@@ -9,6 +9,7 @@ const useSignup = () => {
     mutation: {
       onSuccess: () => {
         navigate('/login');
+        toast.success('Account created successfully');
       },
       onError(error: Error) {
         toast.error(getErrorMessage(error));
