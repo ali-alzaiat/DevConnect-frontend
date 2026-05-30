@@ -7,7 +7,7 @@ export const customInstance = axios.create({
 
 // You can even add interceptors here to automatically attach your JWT!
 customInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('accessToken');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

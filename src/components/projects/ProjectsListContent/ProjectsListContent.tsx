@@ -38,6 +38,7 @@ const ProjectsListContent = () => {
               index={project.id}
               className="rounded-lg size-10"
               textSize="text-base"
+              hideTooltip
             />
           }
           title={project.title}

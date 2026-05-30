@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
@@ -18,18 +19,22 @@ import {
   MessageSquareCode,
   MessageSquareMore,
   NotebookText,
+  Power,
   Search,
   Settings,
   User
 } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router';
 import { useSidebar } from '@/contexts/SidebarContext';
+import Logo from '../general/Logo';
+import { useLogout } from '@/hooks/useLogout';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname.split('/')[1];
   const { open } = useSidebar();
+  const { logout } = useLogout();
 
   const mainItems = useMemo(() => {
     return [
@@ -89,9 +94,7 @@ const Navbar = () => {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="text-brand flex flex-row justify-between">
-        <div className="flex items-center gap-2 logo pl-2">
-          <MessageSquareCode className="h-6 w-6 bg-brand p-1 text-on-brand" /> DevConnect
-        </div>
+        <Logo />
         <SidebarTrigger />
       </SidebarHeader>
       <SidebarContent>
@@ -106,6 +109,21 @@ const Navbar = () => {
           {renderMenuItems(settingsItems)}
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <button
+                className={`w-full text-left px-3 py-2 rounded-md transition-colors duration-200 hover:cursor-pointer text-error hover:bg-surface-hover hover:text-error! font-normal`}
+                onClick={logout}
+              >
+                <Power className="w-5 h-5" />
+                <span>Log Out</span>
+              </button>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 };

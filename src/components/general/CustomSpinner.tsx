@@ -13,9 +13,9 @@ function Spinner({ className, ...props }: React.ComponentProps<'svg'>) {
   );
 }
 
-export function CustomSpinner() {
+export function CustomSpinner({ fullPage = false }) {
   return (
-    <div className="flex items-center gap-4">
+    <div className={`flex items-center justify-center ${fullPage ? 'w-full h-screen' : 'w-full'}`}>
       <Spinner />
     </div>
   );

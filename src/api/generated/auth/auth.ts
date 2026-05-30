@@ -21,7 +21,7 @@ import type {
   UseQueryResult
 } from '@tanstack/react-query';
 
-import type { LoginDto, SignupDto } from '../../model';
+import type { LoginDto, LoginResponseDto, SignupDto } from '../../model';
 
 import { customFetch } from '../../../../axios-instance';
 
@@ -32,7 +32,7 @@ export const login = (
   options?: SecondParameter<typeof customFetch>,
   signal?: AbortSignal
 ) => {
-  return customFetch<void>(
+  return customFetch<LoginResponseDto>(
     {
       url: `/v1/auth/login`,
       method: 'POST',

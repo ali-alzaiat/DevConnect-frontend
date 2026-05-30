@@ -5,23 +5,40 @@
  * The DevConnect API documentation
  * OpenAPI spec version: 1.0
  */
+import { faker } from '@faker-js/faker';
+
 import { HttpResponse, http } from 'msw';
 import type { RequestHandlerOptions } from 'msw';
 
+import type { LoginResponseDto } from '../../model';
+
+export const getLoginResponseMock = (
+  overrideResponse: Partial<Extract<LoginResponseDto, object>> = {}
+): LoginResponseDto => ({
+  token: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  user: {},
+  ...overrideResponse
+});
+
 export const getLoginMockHandler = (
   overrideResponse?:
-    | void
-    | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<void> | void),
+    | LoginResponseDto
+    | ((
+        info: Parameters<Parameters<typeof http.post>[1]>[0]
+      ) => Promise<LoginResponseDto> | LoginResponseDto),
   options?: RequestHandlerOptions
 ) => {
   return http.post(
     '*/v1/auth/login',
     async (info: Parameters<Parameters<typeof http.post>[1]>[0]) => {
-      if (typeof overrideResponse === 'function') {
-        await overrideResponse(info);
-      }
-
-      return new HttpResponse(null, { status: 200 });
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getLoginResponseMock(),
+        { status: 200 }
+      );
     },
     options
   );

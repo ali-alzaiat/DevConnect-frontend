@@ -5,3 +5,14 @@
  * The DevConnect API documentation
  * OpenAPI spec version: 1.0
  */
+import { faker } from '@faker-js/faker';
+
+import type { LoginResponseDto } from '../../model';
+
+export const getLoginResponseMock = (
+  overrideResponse: Partial<Extract<LoginResponseDto, object>> = {}
+): LoginResponseDto => ({
+  token: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  user: {},
+  ...overrideResponse
+});

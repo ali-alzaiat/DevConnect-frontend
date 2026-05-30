@@ -14,11 +14,24 @@ type InitialsAvatarProps = {
   textSize?: string;
   name: string;
   index: number;
+  hideTooltip?: boolean;
 };
 
-function InitialsAvatar({ className, name, index, textSize }: InitialsAvatarProps) {
+function InitialsAvatar({
+  className,
+  name,
+  index,
+  textSize,
+  hideTooltip = false
+}: InitialsAvatarProps) {
   const color = colors[index % colors.length];
-  return (
+  return hideTooltip ? (
+    <Avatar className={clsx('size-7', className)}>
+      <AvatarFallback className={clsx(`rounded-lg font-semibold`, textSize || 'text-xs', color)}>
+        {getInitials(name)}
+      </AvatarFallback>
+    </Avatar>
+  ) : (
     <Tooltip>
       <TooltipTrigger>
         <Avatar className={clsx('size-7', className)}>

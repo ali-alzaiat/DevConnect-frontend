@@ -21,6 +21,8 @@ export * from './getAllProjects200';
 export * from './getAllSnippets200';
 export * from './getAllSnippetsParams';
 export * from './loginDto';
+export * from './loginResponseDto';
+export * from './loginResponseDtoUser';
 export * from './paginatedResponseDto';
 export * from './paginationMetaDto';
 export * from './projectListingFilter';
