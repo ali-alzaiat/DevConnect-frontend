@@ -7,18 +7,31 @@
  */
 import { faker } from '@faker-js/faker';
 
-import type { ArticleResponseDto, PaginatedResponseDto } from '../../model';
+import type { ArticleResponseDto, GetAllArticles200 } from '../../model';
 
-export const getGetAllArticlesResponseMock = (
-  overrideResponse: Partial<Extract<PaginatedResponseDto, object>> = {}
-): PaginatedResponseDto => ({
-  meta: {
-    page: faker.number.float({ fractionDigits: 2 }),
-    limit: faker.number.float({ fractionDigits: 2 }),
-    total: faker.number.float({ fractionDigits: 2 }),
-    totalPages: faker.number.float({ fractionDigits: 2 })
+export const getGetAllArticlesResponseMock = (): GetAllArticles200 => ({
+  ...{
+    meta: {
+      page: faker.number.float({ fractionDigits: 2 }),
+      limit: faker.number.float({ fractionDigits: 2 }),
+      total: faker.number.float({ fractionDigits: 2 }),
+      totalPages: faker.number.float({ fractionDigits: 2 })
+    }
   },
-  ...overrideResponse
+  ...{
+    data: faker.helpers.arrayElement([
+      Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
+        id: faker.number.float({ fractionDigits: 2 }),
+        title: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        description: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        content: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        author: {},
+        createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+        updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z'
+      })),
+      undefined
+    ])
+  }
 });
 
 export const getCreateArticleResponseMock = (

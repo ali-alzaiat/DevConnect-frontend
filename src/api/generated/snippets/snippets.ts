@@ -23,8 +23,8 @@ import type {
 
 import type {
   CreateSnippetDTO,
+  GetAllSnippets200,
   GetAllSnippetsParams,
-  PaginatedResponseDto,
   SnippetResponseDTO,
   UpdateSnippetDto
 } from '../../model';
@@ -41,7 +41,7 @@ export const getAllSnippets = (
   options?: SecondParameter<typeof customFetch>,
   signal?: AbortSignal
 ) => {
-  return customFetch<PaginatedResponseDto>(
+  return customFetch<GetAllSnippets200>(
     { url: `/v1/snippet`, method: 'GET', params, signal },
     options
   );

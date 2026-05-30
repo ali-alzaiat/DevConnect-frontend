@@ -23,8 +23,8 @@ import type {
 
 import type {
   CreateUserDto,
+  FindAllUsers200,
   FindAllUsersParams,
-  PaginatedResponseDto,
   UpdateUserDto
 } from '../../model';
 
@@ -119,10 +119,7 @@ export const findAllUsers = (
   options?: SecondParameter<typeof customFetch>,
   signal?: AbortSignal
 ) => {
-  return customFetch<PaginatedResponseDto>(
-    { url: `/v1/user`, method: 'GET', params, signal },
-    options
-  );
+  return customFetch<FindAllUsers200>({ url: `/v1/user`, method: 'GET', params, signal }, options);
 };
 
 export const getFindAllUsersQueryKey = (params?: FindAllUsersParams) => {

@@ -24,8 +24,8 @@ import type {
 import type {
   ArticleResponseDto,
   CreateArticleDto,
+  GetAllArticles200,
   GetAllArticlesParams,
-  PaginatedResponseDto,
   UpdateArticleDto
 } from '../../model';
 
@@ -41,7 +41,7 @@ export const getAllArticles = (
   options?: SecondParameter<typeof customFetch>,
   signal?: AbortSignal
 ) => {
-  return customFetch<PaginatedResponseDto>(
+  return customFetch<GetAllArticles200>(
     { url: `/v1/article`, method: 'GET', params, signal },
     options
   );

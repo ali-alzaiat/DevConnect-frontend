@@ -23,7 +23,7 @@ import type {
 
 import type {
   CreateProjectDto,
-  PaginatedResponseDto,
+  GetAllProjects200,
   ProjectListingFilter,
   ProjectResponseDto,
   UpdateProjectDto
@@ -120,7 +120,7 @@ export const getAllProjects = (
   options?: SecondParameter<typeof customFetch>,
   signal?: AbortSignal
 ) => {
-  return customFetch<PaginatedResponseDto>(
+  return customFetch<GetAllProjects200>(
     {
       url: `/v1/project/list`,
       method: 'POST',

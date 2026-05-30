@@ -7,16 +7,28 @@
  */
 import { faker } from '@faker-js/faker';
 
-import type { PaginatedResponseDto } from '../../model';
+import type { FindAllUsers200 } from '../../model';
 
-export const getFindAllUsersResponseMock = (
-  overrideResponse: Partial<Extract<PaginatedResponseDto, object>> = {}
-): PaginatedResponseDto => ({
-  meta: {
-    page: faker.number.float({ fractionDigits: 2 }),
-    limit: faker.number.float({ fractionDigits: 2 }),
-    total: faker.number.float({ fractionDigits: 2 }),
-    totalPages: faker.number.float({ fractionDigits: 2 })
+export const getFindAllUsersResponseMock = (): FindAllUsers200 => ({
+  ...{
+    meta: {
+      page: faker.number.float({ fractionDigits: 2 }),
+      limit: faker.number.float({ fractionDigits: 2 }),
+      total: faker.number.float({ fractionDigits: 2 }),
+      totalPages: faker.number.float({ fractionDigits: 2 })
+    }
   },
-  ...overrideResponse
+  ...{
+    data: faker.helpers.arrayElement([
+      Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
+        meta: {
+          page: faker.number.float({ fractionDigits: 2 }),
+          limit: faker.number.float({ fractionDigits: 2 }),
+          total: faker.number.float({ fractionDigits: 2 }),
+          totalPages: faker.number.float({ fractionDigits: 2 })
+        }
+      })),
+      undefined
+    ])
+  }
 });

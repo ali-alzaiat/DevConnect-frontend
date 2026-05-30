@@ -1,7 +1,7 @@
-import { Plus } from "lucide-react";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { Plus } from 'lucide-react';
+import { Button } from '../ui/button';
+import { Separator } from '../ui/separator';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 type HeaderProps = {
   onClickHandler?: () => void;
@@ -10,12 +10,7 @@ type HeaderProps = {
   buttonText?: string;
 };
 
-const Header = ({
-  title,
-  onClickHandler,
-  description,
-  buttonText,
-}: HeaderProps) => {
+const Header = ({ title, onClickHandler, description, buttonText }: HeaderProps) => {
   const isMobile = useIsMobile();
   return (
     <div className="header-container mb-3">
@@ -32,7 +27,7 @@ const Header = ({
           </Button>
         )}
       </div>
-      <p className="text-base text-gray-700">{description}</p>
+      <p className="text-base text-secondary">{description}</p>
       <Separator className="my-4" />
     </div>
   );

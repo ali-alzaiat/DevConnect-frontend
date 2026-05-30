@@ -7,7 +7,7 @@
  */
 import { faker } from '@faker-js/faker';
 
-import type { PaginatedResponseDto, ProjectResponseDto } from '../../model';
+import type { GetAllProjects200, ProjectResponseDto } from '../../model';
 
 export const getCreateProjectResponseMock = (
   overrideResponse: Partial<Extract<ProjectResponseDto, object>> = {}
@@ -31,16 +31,40 @@ export const getCreateProjectResponseMock = (
   ...overrideResponse
 });
 
-export const getGetAllProjectsResponseMock = (
-  overrideResponse: Partial<Extract<PaginatedResponseDto, object>> = {}
-): PaginatedResponseDto => ({
-  meta: {
-    page: faker.number.float({ fractionDigits: 2 }),
-    limit: faker.number.float({ fractionDigits: 2 }),
-    total: faker.number.float({ fractionDigits: 2 }),
-    totalPages: faker.number.float({ fractionDigits: 2 })
+export const getGetAllProjectsResponseMock = (): GetAllProjects200 => ({
+  ...{
+    meta: {
+      page: faker.number.float({ fractionDigits: 2 }),
+      limit: faker.number.float({ fractionDigits: 2 }),
+      total: faker.number.float({ fractionDigits: 2 }),
+      totalPages: faker.number.float({ fractionDigits: 2 })
+    }
   },
-  ...overrideResponse
+  ...{
+    data: faker.helpers.arrayElement([
+      Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
+        id: faker.number.float({ fractionDigits: 2 }),
+        title: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        description: faker.helpers.arrayElement([
+          faker.string.alpha({ length: { min: 10, max: 20 } }),
+          undefined
+        ]),
+        tasks: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(
+          () => ({
+            id: faker.number.float({ fractionDigits: 2 }),
+            title: faker.string.alpha({ length: { min: 10, max: 20 } }),
+            description: faker.string.alpha({ length: { min: 10, max: 20 } }),
+            dueDate: faker.date.past().toISOString().slice(0, 19) + 'Z',
+            status: faker.string.alpha({ length: { min: 10, max: 20 } })
+          })
+        ),
+        owner: faker.helpers.arrayElement([{}, undefined]),
+        createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+        updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z'
+      })),
+      undefined
+    ])
+  }
 });
 
 export const getGetProjectByIdResponseMock = (

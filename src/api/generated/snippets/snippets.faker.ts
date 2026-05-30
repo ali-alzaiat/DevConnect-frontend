@@ -7,18 +7,33 @@
  */
 import { faker } from '@faker-js/faker';
 
-import type { PaginatedResponseDto, SnippetResponseDTO } from '../../model';
+import type { GetAllSnippets200, SnippetResponseDTO } from '../../model';
 
-export const getGetAllSnippetsResponseMock = (
-  overrideResponse: Partial<Extract<PaginatedResponseDto, object>> = {}
-): PaginatedResponseDto => ({
-  meta: {
-    page: faker.number.float({ fractionDigits: 2 }),
-    limit: faker.number.float({ fractionDigits: 2 }),
-    total: faker.number.float({ fractionDigits: 2 }),
-    totalPages: faker.number.float({ fractionDigits: 2 })
+export const getGetAllSnippetsResponseMock = (): GetAllSnippets200 => ({
+  ...{
+    meta: {
+      page: faker.number.float({ fractionDigits: 2 }),
+      limit: faker.number.float({ fractionDigits: 2 }),
+      total: faker.number.float({ fractionDigits: 2 }),
+      totalPages: faker.number.float({ fractionDigits: 2 })
+    }
   },
-  ...overrideResponse
+  ...{
+    data: faker.helpers.arrayElement([
+      Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
+        id: faker.number.float({ fractionDigits: 2 }),
+        name: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        tags: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(
+          () => faker.string.alpha({ length: { min: 10, max: 20 } })
+        ),
+        code: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        description: {},
+        createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+        updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z'
+      })),
+      undefined
+    ])
+  }
 });
 
 export const getCreateSnippetResponseMock = (
