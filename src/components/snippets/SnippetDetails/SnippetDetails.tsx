@@ -21,12 +21,9 @@ const SnippetDetails = () => {
         ))}
       </div>
       <div className="mt-6 flex flex-col justify-start gap-4 w-full px-3 items-center">
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          className="bg-gray-200 dark:bg-gray-500 p-4 rounded-md overflow-x-auto w-8/10"
-        >
-          {snippetCode}
-        </ReactMarkdown>
+        <div className="bg-gray-200 dark:bg-gray-500 p-4 rounded-md overflow-x-auto w-8/10">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{snippetCode}</ReactMarkdown>
+        </div>
       </div>
     </div>
   );
