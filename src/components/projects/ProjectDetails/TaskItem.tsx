@@ -6,7 +6,7 @@ import { useCallback, useRef } from 'react';
 import { useDrop, useDrag } from 'react-dnd';
 import TaskPriorityTag from '../TaskPriorityTag/TaskPriorityTag';
 import TaskTypeTag from '../TaskTypeTag/TaskTypeTag';
-import { Task, TaskDragItem } from './ProjectDetails';
+import { Task, TaskDragItem } from './types';
 import { Identifier, XYCoord } from 'dnd-core';
 
 export const TaskItem = ({

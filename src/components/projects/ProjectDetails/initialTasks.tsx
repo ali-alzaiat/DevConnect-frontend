@@ -1,6 +1,6 @@
 import { TaskPriority } from '../TaskPriorityTag/constants';
 import { TaskType } from '../TaskTypeTag/constants';
-import { Task } from './ProjectDetails';
+import { Task } from './types';
 
 export const initialTasks: Task[] = [
   // ... your initial tasks here

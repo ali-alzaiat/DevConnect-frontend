@@ -1,7 +1,7 @@
 import { ItemTypes } from '@/constants';
 import { useCallback } from 'react';
 import { useDrop } from 'react-dnd';
-import { Task, TaskFormData } from './ProjectDetails';
+import { Task, TaskFormData } from './types';
 import { increseCount } from './initialTasks';
 import { TaskItem } from './TaskItem';
 import { NewTaskButton } from './NewTaskButton';

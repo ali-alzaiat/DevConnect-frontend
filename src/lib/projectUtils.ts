@@ -1,4 +1,4 @@
-import { Task } from '@/components/projects/ProjectDetails/ProjectDetails';
+import { Task } from '@/components/projects/ProjectDetails/types';
 
 export const groupTasks = (tasks: Task[]) => {
   return {
