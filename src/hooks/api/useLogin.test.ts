@@ -1,5 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createElement } from 'react';
+import type { ReactNode } from 'react';
 import useLogin from './useLogin';
 import { useLogin as useLoginGenerated } from '@/api/generated/auth/auth';
 import { useNavigate, useLocation } from 'react-router';
@@ -21,12 +24,21 @@ vi.mock('sonner', () => ({
   }
 }));
 
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { retry: false } }
+});
+
+function Wrapper({ children }: { children: ReactNode }) {
+  return createElement(QueryClientProvider, { client: queryClient }, children);
+}
+
 describe('useLogin', () => {
   const mockNavigate = vi.fn();
   const mockMutate = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
+    queryClient.clear();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useNavigate as any).mockReturnValue(mockNavigate);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,16 +48,16 @@ describe('useLogin', () => {
   });
 
   it('should call useLoginGenerated with mutation options', () => {
-    renderHook(() => useLogin());
+    renderHook(() => useLogin(), { wrapper: Wrapper });
     expect(useLoginGenerated).toHaveBeenCalled();
   });
 
   it('should navigate and store token on success', () => {
-    renderHook(() => useLogin());
+    renderHook(() => useLogin(), { wrapper: Wrapper });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const options = (useLoginGenerated as any).mock.calls[0][0];
 
-    options.mutation.onSuccess({ token: 'mock-token' });
+    options.mutation.onSuccess({ access_token: 'mock-token', user: {} });
 
     expect(localStorage.getItem('accessToken')).toBe('mock-token');
     expect(mockNavigate).toHaveBeenCalledWith('/home', { replace: true });
@@ -54,17 +66,17 @@ describe('useLogin', () => {
   it('should use redirectTo from search params', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useLocation as any).mockReturnValue({ search: '?redirectTo=/dashboard' });
-    renderHook(() => useLogin());
+    renderHook(() => useLogin(), { wrapper: Wrapper });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const options = (useLoginGenerated as any).mock.calls[0][0];
 
-    options.mutation.onSuccess({ token: 'mock-token' });
+    options.mutation.onSuccess({ access_token: 'mock-token', user: {} });
 
     expect(mockNavigate).toHaveBeenCalledWith('/dashboard', { replace: true });
   });
 
   it('should show error toast on error', () => {
-    renderHook(() => useLogin());
+    renderHook(() => useLogin(), { wrapper: Wrapper });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const options = (useLoginGenerated as any).mock.calls[0][0];
 

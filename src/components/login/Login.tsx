@@ -18,7 +18,7 @@ const loginSchema = z.object({
 });
 
 const Login = () => {
-  const { mutate: login } = useLogin();
+  const { mutate: login, isPending } = useLogin();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -89,8 +89,8 @@ const Login = () => {
                   </Field>
                 )}
               />
-              <Button type="submit" className="w-full">
-                Login
+              <Button type="submit" className="w-full" disabled={isPending}>
+                {isPending ? 'Logging in...' : 'Login'}
               </Button>
               <div className="flex items-center justify-center gap-2 text-secondary">
                 <p>Don't have an account?</p>

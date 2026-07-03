@@ -19,7 +19,7 @@ const signupSchema = z.object({
 });
 
 const SignUp = () => {
-  const { mutate: signup } = useSignup();
+  const { mutate: signup, isPending } = useSignup();
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -110,8 +110,8 @@ const SignUp = () => {
                   </Field>
                 )}
               />
-              <Button type="submit" className="w-full">
-                Sign Up
+              <Button type="submit" className="w-full" disabled={isPending}>
+                {isPending ? 'Creating account...' : 'Sign Up'}
               </Button>
               <div className="flex items-center justify-center gap-2 text-secondary">
                 <p>Already have an account?</p>

@@ -17,14 +17,21 @@ const Preferences = lazy(() => import('./components/Settings/Preferences'));
 const Login = lazy(() => import('./components/login/Login'));
 
 function App() {
-  const { data: user, isError, isLoading } = useCheckLoginStatus();
+  const { data: user, isError, isLoading, isRefetching } = useCheckLoginStatus();
+  const hasToken = !!localStorage.getItem('accessToken');
 
   if (isLoading) return <CustomSpinner fullPage />;
+
+  const hideWhileRefetching = hasToken && isError && isRefetching;
+  if (hideWhileRefetching) return <CustomSpinner fullPage />;
+
+  const isAuthenticated = user != null;
+  const showProtected = isAuthenticated || (!isError && isLoading);
 
   return (
     <Suspense fallback={null}>
       <Routes>
-        <Route element={<ProtectedRoute isAllowed={user != null && !isError && !isLoading} />}>
+        <Route element={<ProtectedRoute isAllowed={showProtected} />}>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
