@@ -61,10 +61,11 @@ React 19, Vite 8, TanStack Query v5, Zustand, Tailwind v4, shadcn/ui, react-rout
 - Use `React.memo` only when profiling shows a bottleneck — not preemptively.
 - Keep bundle size in check: no unnecessary re-renders, no large libraries without approval.
 
-### No Comments
+### Comments
 
-- Do not add comments to code. Use descriptive names and TypeScript types.
-- Exception: JSDoc on public API of shared hooks/utils if the signature is non-obvious.
+- Prefer clean naming and strong types to make code self-documenting.
+- Use descriptive comments to explain complex logic or non-obvious architectural decisions.
+- Use JSDoc for public APIs of shared hooks and utilities.
 
 ## Folder Structure
 

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { initialTasks } from './initialTasks';
-import { Task } from './ProjectDetails';
+import { Task } from './types';
 import { TaskList } from './TaskList';
 import { groupTasks } from '@/lib/projectUtils';
 

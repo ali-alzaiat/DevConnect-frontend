@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TaskFormData } from './ProjectDetails';
+import { TaskFormData } from './types';
 import { Controller, useForm } from 'react-hook-form';
 import { TaskPriority } from '../TaskPriorityTag/constants';
 import { TaskType } from '../TaskTypeTag/constants';
