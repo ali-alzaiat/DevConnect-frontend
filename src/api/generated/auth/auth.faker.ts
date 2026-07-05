@@ -7,12 +7,24 @@
  */
 import { faker } from '@faker-js/faker';
 
-import type { LoginResponseDto } from '../../model';
+import type { LoginResponseDto, UserResponseDTO } from '../../model';
 
 export const getLoginResponseMock = (
   overrideResponse: Partial<Extract<LoginResponseDto, object>> = {}
 ): LoginResponseDto => ({
   token: faker.string.alpha({ length: { min: 10, max: 20 } }),
   user: {},
+  ...overrideResponse
+});
+
+export const getCheckLoginStatusResponseMock = (
+  overrideResponse: Partial<Extract<UserResponseDTO, object>> = {}
+): UserResponseDTO => ({
+  id: faker.number.float({ fractionDigits: 2 }),
+  name: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  email: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  role: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  preferences: {},
   ...overrideResponse
 });

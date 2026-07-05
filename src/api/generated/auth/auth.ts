@@ -21,12 +21,15 @@ import type {
   UseQueryResult
 } from '@tanstack/react-query';
 
-import type { LoginDto, LoginResponseDto, SignupDto } from '../../model';
+import type { LoginDto, LoginResponseDto, SignupDto, UserResponseDTO } from '../../model';
 
 import { customFetch } from '../../../../axios-instance';
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
+/**
+ * @summary Login
+ */
 export const login = (
   loginDto: LoginDto,
   options?: SecondParameter<typeof customFetch>,
@@ -75,6 +78,9 @@ export type LoginMutationResult = NonNullable<Awaited<ReturnType<typeof login>>>
 export type LoginMutationBody = LoginDto;
 export type LoginMutationError = unknown;
 
+/**
+ * @summary Login
+ */
 export const useLogin = <TError = unknown, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
@@ -89,6 +95,9 @@ export const useLogin = <TError = unknown, TContext = unknown>(
 ): UseMutationResult<Awaited<ReturnType<typeof login>>, TError, { data: LoginDto }, TContext> => {
   return useMutation(getLoginMutationOptions(options), queryClient);
 };
+/**
+ * @summary Signup
+ */
 export const signup = (
   signupDto: SignupDto,
   options?: SecondParameter<typeof customFetch>,
@@ -142,6 +151,9 @@ export type SignupMutationResult = NonNullable<Awaited<ReturnType<typeof signup>
 export type SignupMutationBody = SignupDto;
 export type SignupMutationError = unknown;
 
+/**
+ * @summary Signup
+ */
 export const useSignup = <TError = unknown, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
@@ -156,11 +168,14 @@ export const useSignup = <TError = unknown, TContext = unknown>(
 ): UseMutationResult<Awaited<ReturnType<typeof signup>>, TError, { data: SignupDto }, TContext> => {
   return useMutation(getSignupMutationOptions(options), queryClient);
 };
+/**
+ * @summary Check login status
+ */
 export const checkLoginStatus = (
   options?: SecondParameter<typeof customFetch>,
   signal?: AbortSignal
 ) => {
-  return customFetch<void>({ url: `/v1/auth/me`, method: 'GET', signal }, options);
+  return customFetch<UserResponseDTO>({ url: `/v1/auth/me`, method: 'GET', signal }, options);
 };
 
 export const getCheckLoginStatusQueryKey = () => {
@@ -169,7 +184,7 @@ export const getCheckLoginStatusQueryKey = () => {
 
 export const getCheckLoginStatusQueryOptions = <
   TData = Awaited<ReturnType<typeof checkLoginStatus>>,
-  TError = unknown
+  TError = void
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof checkLoginStatus>>, TError, TData>>;
   request?: SecondParameter<typeof customFetch>;
@@ -189,11 +204,11 @@ export const getCheckLoginStatusQueryOptions = <
 };
 
 export type CheckLoginStatusQueryResult = NonNullable<Awaited<ReturnType<typeof checkLoginStatus>>>;
-export type CheckLoginStatusQueryError = unknown;
+export type CheckLoginStatusQueryError = void;
 
 export function useCheckLoginStatus<
   TData = Awaited<ReturnType<typeof checkLoginStatus>>,
-  TError = unknown
+  TError = void
 >(
   options: {
     query: Partial<UseQueryOptions<Awaited<ReturnType<typeof checkLoginStatus>>, TError, TData>> &
@@ -211,7 +226,7 @@ export function useCheckLoginStatus<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useCheckLoginStatus<
   TData = Awaited<ReturnType<typeof checkLoginStatus>>,
-  TError = unknown
+  TError = void
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof checkLoginStatus>>, TError, TData>> &
@@ -229,7 +244,7 @@ export function useCheckLoginStatus<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useCheckLoginStatus<
   TData = Awaited<ReturnType<typeof checkLoginStatus>>,
-  TError = unknown
+  TError = void
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof checkLoginStatus>>, TError, TData>>;
@@ -237,10 +252,13 @@ export function useCheckLoginStatus<
   },
   queryClient?: QueryClient
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+/**
+ * @summary Check login status
+ */
 
 export function useCheckLoginStatus<
   TData = Awaited<ReturnType<typeof checkLoginStatus>>,
-  TError = unknown
+  TError = void
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof checkLoginStatus>>, TError, TData>>;

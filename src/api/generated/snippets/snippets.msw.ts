@@ -30,7 +30,10 @@ export const getGetAllSnippetsResponseMock = (): GetAllSnippets200 => ({
           () => faker.string.alpha({ length: { min: 10, max: 20 } })
         ),
         code: faker.string.alpha({ length: { min: 10, max: 20 } }),
-        description: {},
+        description: faker.helpers.arrayElement([
+          faker.string.alpha({ length: { min: 10, max: 20 } }),
+          undefined
+        ]),
         createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
         updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z'
       })),
@@ -48,7 +51,10 @@ export const getCreateSnippetResponseMock = (
     faker.string.alpha({ length: { min: 10, max: 20 } })
   ),
   code: faker.string.alpha({ length: { min: 10, max: 20 } }),
-  description: {},
+  description: faker.helpers.arrayElement([
+    faker.string.alpha({ length: { min: 10, max: 20 } }),
+    undefined
+  ]),
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   ...overrideResponse
@@ -63,7 +69,10 @@ export const getGetSnippetByIdResponseMock = (
     faker.string.alpha({ length: { min: 10, max: 20 } })
   ),
   code: faker.string.alpha({ length: { min: 10, max: 20 } }),
-  description: {},
+  description: faker.helpers.arrayElement([
+    faker.string.alpha({ length: { min: 10, max: 20 } }),
+    undefined
+  ]),
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   ...overrideResponse
@@ -78,7 +87,10 @@ export const getUpdateSnippetResponseMock = (
     faker.string.alpha({ length: { min: 10, max: 20 } })
   ),
   code: faker.string.alpha({ length: { min: 10, max: 20 } }),
-  description: {},
+  description: faker.helpers.arrayElement([
+    faker.string.alpha({ length: { min: 10, max: 20 } }),
+    undefined
+  ]),
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   ...overrideResponse
