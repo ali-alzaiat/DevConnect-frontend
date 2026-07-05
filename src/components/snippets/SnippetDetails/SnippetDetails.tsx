@@ -1,17 +1,42 @@
 import Header from '@/components/general/header';
 import { Badge } from '@/components/ui/badge';
-import { useLocation } from 'react-router';
+import { useParams } from 'react-router';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { useGetSnippetById } from '@/api/generated/snippets/snippets';
+import { CustomSpinner } from '@/components/general/CustomSpinner';
+import EmptyContent from '@/components/general/EmptyContent';
 
 const SnippetDetails = () => {
-  const location = useLocation();
-  const { snippetName, snippetDescription, snippetCode, snippetTags } = location.state || {
-    snippetName: '',
-    snippetDescription: '',
-    snippetCode: '',
-    snippetTags: []
-  };
+  const { id } = useParams<{ id: string }>();
+  const { data: snippet, isLoading, isError } = useGetSnippetById(Number(id));
+
+  if (isLoading) {
+    return (
+      <div className="snippet-details">
+        <Header title="Snippet Details" description="" />
+        <CustomSpinner />
+      </div>
+    );
+  }
+
+  if (isError || !snippet) {
+    return (
+      <div className="snippet-details">
+        <Header title="Snippet Details" description="" />
+        <EmptyContent
+          title="Something went wrong"
+          description="Failed to load snippet. Please try again later."
+        />
+      </div>
+    );
+  }
+
+  const snippetName = snippet.name ?? '';
+  const snippetDescription = String(snippet.description ?? '');
+  const snippetCode = snippet.code ?? '';
+  const snippetTags: string[] = snippet.tags ?? [];
+
   return (
     <div className="snippet-details">
       <Header title={snippetName} description={snippetDescription} />
