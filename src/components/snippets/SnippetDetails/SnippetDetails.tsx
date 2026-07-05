@@ -9,7 +9,7 @@ import EmptyContent from '@/components/general/EmptyContent';
 
 const SnippetDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const { data: snippetResponse, isLoading, isError } = useGetSnippetById(id ?? '');
+  const { data: snippet, isLoading, isError } = useGetSnippetById(Number(id));
 
   if (isLoading) {
     return (
@@ -20,7 +20,7 @@ const SnippetDetails = () => {
     );
   }
 
-  if (isError || !snippetResponse) {
+  if (isError || !snippet) {
     return (
       <div className="snippet-details">
         <Header title="Snippet Details" description="" />
@@ -32,10 +32,9 @@ const SnippetDetails = () => {
     );
   }
 
-  const snippet = snippetResponse.data;
   const snippetName = snippet.name ?? '';
-  const snippetDescription = snippet.description ?? '';
-  const snippetCode = snippet.code ?? snippet.content ?? '';
+  const snippetDescription = String(snippet.description ?? '');
+  const snippetCode = snippet.code ?? '';
   const snippetTags: string[] = snippet.tags ?? [];
 
   return (
