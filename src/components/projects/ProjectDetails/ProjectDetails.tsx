@@ -12,15 +12,23 @@ const ProjectDetails = () => {
   const { data: project, isLoading, isError } = useGetProjectById(Number(id));
 
   if (isLoading) {
-    return <CustomSpinner />;
+    return (
+      <div className="project-details">
+        <Header title="Project Details" description="" />
+        <CustomSpinner />
+      </div>
+    );
   }
 
   if (isError || !project) {
     return (
-      <EmptyContent
-        title="Project not found"
-        description="The project you're looking for doesn't exist or has been removed."
-      />
+      <div className="project-details">
+        <Header title="Project Details" description="" />
+        <EmptyContent
+          title="Something went wrong"
+          description="Failed to load project. Please try again later."
+        />
+      </div>
     );
   }
 
