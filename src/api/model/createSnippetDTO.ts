@@ -5,11 +5,10 @@
  * The DevConnect API documentation
  * OpenAPI spec version: 1.0
  */
-import type { CreateSnippetDTODescription } from './createSnippetDTODescription';
 
 export interface CreateSnippetDTO {
   name: string;
   tags: string[];
   code: string;
-  description: CreateSnippetDTODescription;
+  description?: string;
 }

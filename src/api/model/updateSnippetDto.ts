@@ -5,11 +5,10 @@
  * The DevConnect API documentation
  * OpenAPI spec version: 1.0
  */
-import type { UpdateSnippetDtoDescription } from './updateSnippetDtoDescription';
 
 export interface UpdateSnippetDto {
   name?: string;
   tags?: string[];
   code?: string;
-  description?: UpdateSnippetDtoDescription;
+  description?: string;
 }

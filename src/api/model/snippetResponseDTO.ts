@@ -5,14 +5,13 @@
  * The DevConnect API documentation
  * OpenAPI spec version: 1.0
  */
-import type { SnippetResponseDTODescription } from './snippetResponseDTODescription';
 
 export interface SnippetResponseDTO {
   id: number;
   name: string;
   tags: string[];
   code: string;
-  description: SnippetResponseDTODescription;
+  description?: string;
   createdAt: string;
   updatedAt: string;
 }

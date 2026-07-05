@@ -9,6 +9,6 @@ import type { Task } from './task';
 
 export interface CreateProjectDto {
   title: string;
-  description?: string[];
+  description?: string;
   tasks?: Task[];
 }
