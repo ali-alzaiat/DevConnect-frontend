@@ -8,6 +8,7 @@ import { ProjectStatus } from '../StatusBadge/constants';
 import { CustomSpinner } from '@/components/general/CustomSpinner';
 import EmptyContent from '@/components/general/EmptyContent';
 import { timeAgo } from '@/lib/time-ago';
+import OverflowTooltip from '@/components/general/OverflowTooltip';
 
 const ProjectsListContent = () => {
   const { data: projects, isLoading } = useGetAllProjects({});
@@ -28,10 +29,9 @@ const ProjectsListContent = () => {
   }
 
   return (
-    <div className="mt-6 grid gap-4 flex-row w-full px-3 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+    <div className="mt-6 grid gap-4 w-full px-3 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
       {projects.data.map((project) => (
         <Card
-          className="h-45 min-w-[300px]"
           key={project.id}
           icon={
             <InitialsAvatar
@@ -43,11 +43,7 @@ const ProjectsListContent = () => {
             />
           }
           title={project.title}
-          description={
-            <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full">
-              {project.description}
-            </div>
-          }
+          description={<OverflowTooltip text={project.description ?? ''} />}
           onClick={() => {
             navigate(`/projects/${project.id}`, {
               state: {

@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useCreateProject } from '@/api/generated/projects/projects';
+import { useCreateProject } from '@/hooks/api/useCreateProject';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
 

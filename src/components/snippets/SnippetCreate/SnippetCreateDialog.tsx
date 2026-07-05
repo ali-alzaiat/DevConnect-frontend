@@ -18,8 +18,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useCreateSnippet } from '@/api/generated/snippets/snippets';
-import { useQueryClient } from '@tanstack/react-query';
+import { useCreateSnippet } from '@/hooks/api/useCreateSnippet';
 import { toast } from 'sonner';
 
 const formSchema = z.object({
@@ -37,7 +36,6 @@ interface SnippetCreateDialogProps {
 }
 
 const SnippetCreateDialog = ({ open, onOpenChange }: SnippetCreateDialogProps) => {
-  const queryClient = useQueryClient();
   const { mutateAsync: createSnippet, isPending } = useCreateSnippet();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -65,7 +63,6 @@ const SnippetCreateDialog = ({ open, onOpenChange }: SnippetCreateDialogProps) =
         }
       });
       toast.success('Snippet created successfully');
-      queryClient.invalidateQueries({ queryKey: ['/v1/snippet'] });
       form.reset();
       onOpenChange(false);
     } catch {
