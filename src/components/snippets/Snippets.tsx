@@ -7,6 +7,7 @@ import { useGetAllSnippets } from '@/api/generated/snippets/snippets';
 import { CustomSpinner } from '@/components/general/CustomSpinner';
 import EmptyContent from '@/components/general/EmptyContent';
 import SnippetCreateDialog from './SnippetCreate/SnippetCreateDialog';
+import OverflowTooltip from '@/components/general/OverflowTooltip';
 
 const Snippets = () => {
   const navigate = useNavigate();
@@ -64,11 +65,7 @@ const Snippets = () => {
             key={snippet.id}
             icon={<Code className="w-8 h-8" />}
             title={snippet.name}
-            description={
-              <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full">
-                {String(snippet.description ?? '')}
-              </div>
-            }
+            description={<OverflowTooltip text={String(snippet.description ?? '')} />}
             buttonText="Open"
             onClick={() => {
               navigate(`/snippets/${snippet.id}`);

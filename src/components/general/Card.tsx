@@ -29,7 +29,7 @@ const Card = ({
   return (
     <ShadcnCard
       className={clsx(
-        ' justify-evenly py-3 min-w-[200px] w-full hover:cursor-pointer hover:border-1 hover:border-brand transition-all duration-300',
+        'flex flex-col justify-between h-full py-3 min-w-[200px] w-full hover:cursor-pointer hover:border-1 hover:border-brand transition-all duration-300',
         className
       )}
       key={title}

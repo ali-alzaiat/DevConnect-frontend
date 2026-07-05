@@ -36,7 +36,7 @@ const NewProject = () => {
   const onSubmit = async (data: { title: string; description?: string }) => {
     try {
       const project = await createProject({ data });
-      await queryClient.invalidateQueries({ queryKey: getGetAllProjectsQueryKey() });
+      await queryClient.invalidateQueries({ queryKey: getGetAllProjectsQueryKey({}) });
       toast.success('Project created successfully');
       navigate(`/projects/${project.id}`);
     } catch {

@@ -8,6 +8,7 @@ import { ProjectStatus } from '../StatusBadge/constants';
 import { CustomSpinner } from '@/components/general/CustomSpinner';
 import EmptyContent from '@/components/general/EmptyContent';
 import { timeAgo } from '@/lib/time-ago';
+import OverflowTooltip from '@/components/general/OverflowTooltip';
 
 const ProjectsListContent = () => {
   const { data: projects, isLoading } = useGetAllProjects({});
@@ -42,14 +43,7 @@ const ProjectsListContent = () => {
             />
           }
           title={project.title}
-          description={
-            <div
-              className="text-ellipsis overflow-hidden whitespace-nowrap w-full"
-              title={project.description ?? ''}
-            >
-              {project.description}
-            </div>
-          }
+          description={<OverflowTooltip text={project.description ?? ''} />}
           onClick={() => {
             navigate(`/projects/${project.id}`, {
               state: {
