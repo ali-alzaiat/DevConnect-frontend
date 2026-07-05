@@ -1,11 +1,37 @@
 import { useMemo, useState } from 'react';
-import { initialTasks } from './initialTasks';
-import { Task } from './types';
+import { Task as ApiTask } from '@/api/model';
+import { Task as LocalTask } from './types';
 import { TaskList } from './TaskList';
 import { groupTasks } from '@/lib/projectUtils';
+import { TaskPriority } from '../TaskPriorityTag/constants';
+import { TaskType } from '../TaskTypeTag/constants';
 
-const ProjectDetailsContent = () => {
-  const [boardTasks, setBoardTasks] = useState<Task[]>(initialTasks);
+const mapApiStatusToLocal = (status: string): string => {
+  const statusMap: Record<string, string> = {
+    TO_DO: 'to-do',
+    IN_PROGRESS: 'in-progress',
+    DONE: 'done'
+  };
+  return statusMap[status] ?? status?.toLowerCase()?.replace(/_/g, '-') ?? 'to-do';
+};
+
+const mapApiTaskToLocal = (task: ApiTask, index: number): LocalTask => ({
+  id: task.id,
+  title: task.title,
+  status: mapApiStatusToLocal(task.status),
+  dueDate: task.dueDate ? task.dueDate.split('T')[0] : '',
+  assignee: { id: 0, name: 'Unassigned' },
+  type: TaskType.FEATURE,
+  priority: TaskPriority.MEDIUM,
+  order: index
+});
+
+interface ProjectDetailsContentProps {
+  tasks: ApiTask[];
+}
+
+const ProjectDetailsContent = ({ tasks: apiTasks }: ProjectDetailsContentProps) => {
+  const [boardTasks, setBoardTasks] = useState<LocalTask[]>(() => apiTasks.map(mapApiTaskToLocal));
 
   const columnTasks = useMemo(() => groupTasks(boardTasks), [boardTasks]);
 
