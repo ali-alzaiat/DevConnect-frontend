@@ -1,4 +1,5 @@
 import { useLogin as useLoginGenerated } from '@/api/generated/auth/auth';
+import type { LoginResponseDto } from '@/api/model';
 import { getErrorMessage } from '@/lib/utils';
 import { useLocation, useNavigate } from 'react-router';
 import { useQueryClient } from '@tanstack/react-query';
@@ -12,10 +13,7 @@ const useLogin = () => {
   return useLoginGenerated({
     mutation: {
       onSuccess: (response) => {
-        // Backend response uses `access_token` instead of `token`
-        const { access_token: token } = response as unknown as {
-          access_token: string;
-        };
+        const { token } = response as LoginResponseDto;
         localStorage.setItem('accessToken', token);
         queryClient.invalidateQueries({ queryKey: ['/v1/auth/me'] });
 

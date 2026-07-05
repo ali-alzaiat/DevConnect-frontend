@@ -57,7 +57,7 @@ describe('useLogin', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const options = (useLoginGenerated as any).mock.calls[0][0];
 
-    options.mutation.onSuccess({ access_token: 'mock-token', user: {} });
+    options.mutation.onSuccess({ token: 'mock-token', user: {} });
 
     expect(localStorage.getItem('accessToken')).toBe('mock-token');
     expect(mockNavigate).toHaveBeenCalledWith('/home', { replace: true });
@@ -70,7 +70,7 @@ describe('useLogin', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const options = (useLoginGenerated as any).mock.calls[0][0];
 
-    options.mutation.onSuccess({ access_token: 'mock-token', user: {} });
+    options.mutation.onSuccess({ token: 'mock-token', user: {} });
 
     expect(mockNavigate).toHaveBeenCalledWith('/dashboard', { replace: true });
   });
