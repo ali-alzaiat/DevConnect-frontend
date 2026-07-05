@@ -29,7 +29,7 @@ const Snippets = () => {
     );
   }
 
-  if (isError) {
+  if (isError || snippets.length === 0) {
     return (
       <div className="snippets-container">
         <Header
@@ -39,25 +39,12 @@ const Snippets = () => {
           description="Save, share, and discover reusable code snippets."
         />
         <EmptyContent
-          title="Something went wrong"
-          description="Failed to load snippets. Please try again later."
-        />
-      </div>
-    );
-  }
-
-  if (snippets.length === 0) {
-    return (
-      <div className="snippets-container">
-        <Header
-          title="Code Snippets"
-          onClickHandler={onClickHandler}
-          buttonText="Create New Snippet"
-          description="Save, share, and discover reusable code snippets."
-        />
-        <EmptyContent
-          title="No snippets yet"
-          description="Create your first code snippet to get started."
+          title={isError ? 'Something went wrong' : 'No snippets yet'}
+          description={
+            isError
+              ? 'Failed to load snippets. Please try again later.'
+              : 'Create your first code snippet to get started.'
+          }
         />
       </div>
     );
