@@ -11,9 +11,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useCreateProject, getGetAllProjectsQueryKey } from '@/api/generated/projects/projects';
+import { useCreateProject } from '@/hooks/api/useCreateProject';
 import { useNavigate } from 'react-router';
-import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 const formSchema = z.object({
@@ -23,7 +22,6 @@ const formSchema = z.object({
 
 const NewProject = () => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const { mutateAsync: createProject, isPending } = useCreateProject();
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -36,7 +34,6 @@ const NewProject = () => {
   const onSubmit = async (data: { title: string; description?: string }) => {
     try {
       const project = await createProject({ data });
-      await queryClient.invalidateQueries({ queryKey: getGetAllProjectsQueryKey({}) });
       toast.success('Project created successfully');
       navigate(`/projects/${project.id}`);
     } catch {
