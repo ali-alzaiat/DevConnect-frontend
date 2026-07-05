@@ -1,19 +1,19 @@
-import { JSX } from 'react'
-import { Button } from '../ui/button'
-import { CardDescription, CardFooter, CardHeader, CardTitle, Card as ShadcnCard } from '../ui/card'
-import clsx from 'clsx'
+import { JSX } from 'react';
+import { Button } from '../ui/button';
+import { CardDescription, CardFooter, CardHeader, CardTitle, Card as ShadcnCard } from '../ui/card';
+import clsx from 'clsx';
 
 type CardProps = {
-  title: string
-  description: string | JSX.Element
-  buttonText?: string | JSX.Element
-  icon?: React.ReactNode
-  onClick?: () => void
-  className?: string
-  iconClassName?: string
-  headerClassName?: string
-  footer?: React.ReactNode
-}
+  title: string;
+  description: string | JSX.Element;
+  buttonText?: string | JSX.Element;
+  icon?: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+  iconClassName?: string;
+  headerClassName?: string;
+  footer?: React.ReactNode;
+};
 
 const Card = ({
   title,
@@ -29,7 +29,7 @@ const Card = ({
   return (
     <ShadcnCard
       className={clsx(
-        ' justify-evenly h-60 py-3 min-w-[200px] w-full hover:cursor-pointer hover:border-1 hover:border-brand transition-all duration-300',
+        ' justify-evenly py-3 min-w-[200px] w-full hover:cursor-pointer hover:border-1 hover:border-brand transition-all duration-300',
         className
       )}
       key={title}
@@ -53,7 +53,7 @@ const Card = ({
       )}
       {!!footer && <CardFooter>{footer}</CardFooter>}
     </ShadcnCard>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;
