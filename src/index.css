@@ -33,94 +33,94 @@
   --radius: 0.625rem;
 
   /* ── Backgrounds ── */
-  --page: #FAFAF8;
+  --page: #FCFBF9;
   /* outermost app background */
-  --topbar: #F4F3EF;
+  --topbar: #F5F2ED;
   /* sidebar and topbar surface */
   --surface: #FFFFFF;
   /* cards, panels, modals */
-  --surface-hover: #F4F3EF;
+  --surface-hover: #F5F2ED;
   /* hovered cards, ghost button bg */
-  --sunken: #F4F3EF;
+  --sunken: #EDE9E2;
   /* inputs, code blocks, inset areas */
   --overlay: #FFFFFF;
   /* popovers, dropdowns */
 
   /* ── Text ── */
-  --primary: #1A1917;
+  --primary: #1C1917;
   /* headings, body copy */
-  --secondary: #6B6860;
+  --secondary: #78716C;
   /* labels, captions, hints */
-  --muted: #6B6860;
+  --muted: #A8A29E;
   /* placeholders, ghost text */
-  --disabled: #B0AEA8;
+  --disabled: #D6D3D1;
   /* disabled states */
 
   /* ── Borders ── */
-  --subtle: #E5E3DC;
+  --subtle: #E7E5E4;
   /* default dividers, card outlines */
-  --strong: #C4C2BB;
+  --strong: #D4D2D0;
   /* focused inputs, emphasized separators */
 
-  /* ── Brand (purple) — projects ── */
-  --brand: #7C5CFC;
+  /* ── Brand (orange) — projects ── */
+  --brand: #EA580C;
   /* buttons, links, active states */
-  --brand-hover: #5B3FD4;
+  --brand-hover: #C2410C;
   /* hover — noticeably darker */
-  --brand-tint: #EDE9FF;
+  --brand-tint: #FFF7ED;
   /* icon backgrounds, active nav bg */
   --on-brand: #FFFFFF;
   /* text/icons ON a brand-colored bg */
-  --in-brand: #5438D4;
+  --in-brand: #9A3412;
   /* text ON brand-tint bg */
 
-  /* ── Article accent (teal) ── */
-  --article: #0F6E56;
+  /* ── Article accent (emerald) ── */
+  --article: #059669;
   /* article buttons */
-  --article-hover: #085041;
+  --article-hover: #047857;
   /* article button hover */
-  --article-tint: #E1F5EE;
+  --article-tint: #ECFDF5;
   /* article icon bg, badge bg */
-  --on-article: #9FE1CB;
+  --on-article: #FFFFFF;
   /* text ON article button */
-  --in-article: #0F6E56;
+  --in-article: #047857;
   /* text ON article-tint bg */
 
   /* ── Snippet accent (blue) ── */
-  --snippet: #185FA5;
+  --snippet: #2563EB;
   /* snippet buttons */
-  --snippet-hover: #0C447C;
+  --snippet-hover: #1D4ED8;
   /* snippet button hover */
-  --snippet-tint: #E6F1FB;
+  --snippet-tint: #EFF6FF;
   /* snippet icon bg, badge bg */
-  --on-snippet: #B5D4F4;
+  --on-snippet: #FFFFFF;
   /* text ON snippet button */
-  --in-snippet: #185FA5;
+  --in-snippet: #1D4ED8;
   /* text ON snippet-tint bg */
 
   /* ── Tag: priority ── */
-  --priority-high: #C13030;
-  --priority-high-tint: #FCEAEA;
-  --priority-mid: #A45E00;
-  --priority-mid-tint: #FEF3DC;
-  --priority-low: #0F6E56;
-  --priority-low-tint: #E1F5EE;
+  --priority-high: #DC2626;
+  --priority-high-tint: #FEF2F2;
+  --priority-mid: #D97706;
+  --priority-mid-tint: #FFFBEB;
+  --priority-low: #059669;
+  --priority-low-tint: #ECFDF5;
 
   /* ── Tag: type ── */
-  --tag-feature: #5438D4;
-  --tag-feature-tint: #EDE9FF;
-  --tag-bug: #C13030;
-  --tag-bug-tint: #FCEAEA;
-  --tag-docs: #185FA5;
-  --tag-docs-tint: #E6F1FB;
+  --tag-feature: #9A3412;
+  --tag-feature-tint: #FFF7ED;
+  --tag-bug: #DC2626;
+  --tag-bug-tint: #FEF2F2;
+  --tag-docs: #1D4ED8;
+  --tag-docs-tint: #EFF6FF;
 
   /* ── Errors ── */
-  --error: #C13030;
-  --error-tint: #FCEAEA;
+  --error: #DC2626;
+  --error-tint: #FEF2F2;
 
   /* -- Tooltip -- */
-  --tooltip: #1A1917;
-  --on-tooltip: #F2F0EC;
+  --tooltip: #1C1917;
+  --on-tooltip: #F5F5F4;
 
   /* ── shadcn aliases (keeps component libraries working) ── */
   --background: var(--page);
@@ -163,73 +163,73 @@
   color-scheme: dark;
 
   /* ── Backgrounds ── */
-  --page: #0E0D12;
+  --page: #0C0A09;
   /* outermost app background */
-  --topbar: #13121A;
+  --topbar: #141210;
   /* sidebar and topbar surface */
-  --surface: #1F1E25;
+  --surface: #1C1917;
   /* cards, panels, modals */
-  --surface-hover: #2A2832;
+  --surface-hover: #292524;
   /* hovered cards, ghost button bg */
-  --sunken: #2A2832;
+  --sunken: #292524;
   /* inputs, code blocks, inset areas */
-  --overlay: #1F1E25;
+  --overlay: #1C1917;
   /* popovers, dropdowns */
 
   /* ── Text ── */
-  --primary: #F2F0EC;
-  --secondary: #8A8780;
-  --muted: #8A8780;
-  --disabled: #4A4946;
+  --primary: #F5F5F4;
+  --secondary: #A8A29E;
+  --muted: #78716C;
+  --disabled: #57534E;
 
   /* ── Borders ── */
-  --subtle: #2A2832;
-  --strong: #343240;
+  --subtle: #292524;
+  --strong: #44403C;
 
-  /* ── Brand (purple) — projects ── */
-  --brand: #7C5CFC;
-  --brand-hover: #5B3FD4;
-  --brand-tint: #2D2560;
+  /* ── Brand (orange) — projects ── */
+  --brand: #FB923C;
+  --brand-hover: #F97316;
+  --brand-tint: #431407;
   --on-brand: #FFFFFF;
-  --in-brand: #C4ADFF;
+  --in-brand: #FDBA74;
 
-  /* ── Article accent (teal) ── */
-  --article: #0F6E56;
-  --article-hover: #085041;
-  --article-tint: #0A2E24;
-  --on-article: #9FE1CB;
-  --in-article: #3CB87A;
+  /* ── Article accent (emerald) ── */
+  --article: #34D399;
+  --article-hover: #10B981;
+  --article-tint: #022C22;
+  --on-article: #022C22;
+  --in-article: #6EE7B7;
 
   /* ── Snippet accent (blue) ── */
-  --snippet: #185FA5;
-  --snippet-hover: #0C447C;
-  --snippet-tint: #0A1E35;
-  --on-snippet: #B5D4F4;
-  --in-snippet: #6EB3F7;
+  --snippet: #60A5FA;
+  --snippet-hover: #3B82F6;
+  --snippet-tint: #0F1D3D;
+  --on-snippet: #0F1D3D;
+  --in-snippet: #93C5FD;
 
   /* ── Tag: priority ── */
-  --priority-high: #F06060;
+  --priority-high: #F87171;
   --priority-high-tint: #3D1515;
-  --priority-mid: #EF9F27;
+  --priority-mid: #FBBF24;
   --priority-mid-tint: #332500;
-  --priority-low: #3CB87A;
-  --priority-low-tint: #0A2E24;
+  --priority-low: #34D399;
+  --priority-low-tint: #022C22;
 
   /* ── Tag: type ── */
-  --tag-feature: #C4ADFF;
-  --tag-feature-tint: #2D2560;
-  --tag-bug: #F06060;
+  --tag-feature: #FDBA74;
+  --tag-feature-tint: #431407;
+  --tag-bug: #F87171;
   --tag-bug-tint: #3D1515;
-  --tag-docs: #6EB3F7;
-  --tag-docs-tint: #0A1E35;
+  --tag-docs: #93C5FD;
+  --tag-docs-tint: #0F1D3D;
 
   /* ── Errors ── */
-  --error: #F06060;
+  --error: #F87171;
   --error-tint: #3D1515;
 
   /* -- Tooltip -- */
-  --tooltip: #2A2832;
-  --on-tooltip: #F2F0EC;
+  --tooltip: #292524;
+  --on-tooltip: #F5F5F4;
 
   /* ── shadcn aliases ── */
   --background: var(--page);
