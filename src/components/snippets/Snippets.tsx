@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Header from '../general/header';
 import { Code } from 'lucide-react';
@@ -5,22 +6,20 @@ import Card from '../general/Card';
 import { useGetAllSnippets } from '@/api/generated/snippets/snippets';
 import { CustomSpinner } from '@/components/general/CustomSpinner';
 import EmptyContent from '@/components/general/EmptyContent';
+import SnippetCreateDialog from './SnippetCreate/SnippetCreateDialog';
 
 const Snippets = () => {
   const navigate = useNavigate();
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const { data, isLoading, isError } = useGetAllSnippets();
   const snippets = data?.data ?? [];
-
-  const onClickHandler = () => {
-    navigate('/snippets/create');
-  };
 
   if (isLoading) {
     return (
       <div className="snippets-container">
         <Header
           title="Code Snippets"
-          onClickHandler={onClickHandler}
+          onClickHandler={() => setCreateDialogOpen(true)}
           buttonText="Create New Snippet"
           description="Save, share, and discover reusable code snippets."
         />
@@ -34,7 +33,7 @@ const Snippets = () => {
       <div className="snippets-container">
         <Header
           title="Code Snippets"
-          onClickHandler={onClickHandler}
+          onClickHandler={() => setCreateDialogOpen(true)}
           buttonText="Create New Snippet"
           description="Save, share, and discover reusable code snippets."
         />
@@ -46,6 +45,7 @@ const Snippets = () => {
               : 'Create your first code snippet to get started.'
           }
         />
+        <SnippetCreateDialog open={createDialogOpen} onOpenChange={setCreateDialogOpen} />
       </div>
     );
   }
@@ -54,7 +54,7 @@ const Snippets = () => {
     <div className="snippets-container">
       <Header
         title="Code Snippets"
-        onClickHandler={onClickHandler}
+        onClickHandler={() => setCreateDialogOpen(true)}
         buttonText="Create New Snippet"
         description="Save, share, and discover reusable code snippets."
       />
@@ -77,6 +77,7 @@ const Snippets = () => {
           />
         ))}
       </div>
+      <SnippetCreateDialog open={createDialogOpen} onOpenChange={setCreateDialogOpen} />
     </div>
   );
 };
