@@ -7,6 +7,7 @@ import StatusBadge from '../StatusBadge/StatusBadge';
 import { ProjectStatus } from '../StatusBadge/constants';
 import { CustomSpinner } from '@/components/general/CustomSpinner';
 import EmptyContent from '@/components/general/EmptyContent';
+import { timeAgo } from '@/lib/time-ago';
 
 const ProjectsListContent = () => {
   const { data: projects, isLoading } = useGetAllProjects({});
@@ -61,13 +62,14 @@ const ProjectsListContent = () => {
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3 text-disabled text-xs">
                 <span className="flex items-center gap-1">
-                  <CheckIcon className="size-3" /> 4 tasks
+                  <CheckIcon className="size-3" /> {project.tasks?.length ?? 0} tasks
                 </span>
                 <span className="flex items-center gap-1">
-                  <UsersIcon className="size-3" /> 3
+                  <UsersIcon className="size-3" />{' '}
+                  {(project.owner as { name?: string })?.name ?? 'No owner'}
                 </span>
                 <span className="flex items-center gap-1">
-                  <ClockIcon className="size-3" /> 2h ago
+                  <ClockIcon className="size-3" /> {timeAgo(project.updatedAt)}
                 </span>
               </div>
               <StatusBadge status={ProjectStatus.Active} />
