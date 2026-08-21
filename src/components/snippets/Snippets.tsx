@@ -11,6 +11,16 @@ import OverflowTooltip from '@/components/general/OverflowTooltip';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { Badge } from '@/components/ui/badge';
 import { timeAgo } from '@/lib/time-ago';
+import clsx from 'clsx';
+
+const tagColors = [
+  'bg-tag-feature-tint text-tag-feature',
+  'bg-tag-bug-tint text-tag-bug',
+  'bg-tag-docs-tint text-tag-docs',
+  'bg-snippet-tint text-in-snippet',
+  'bg-article-tint text-in-article',
+  'bg-brand-tint text-in-brand'
+];
 
 const Snippets = () => {
   const navigate = useNavigate();
@@ -89,8 +99,14 @@ const Snippets = () => {
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-3 text-muted text-xs">
                   <div className="flex items-center gap-2">
-                    {snippet.tags?.slice(0, 2).map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-xs">
+                    {snippet.tags?.slice(0, 2).map((tag, index) => (
+                      <Badge
+                        key={tag}
+                        className={clsx(
+                          'text-xs border-transparent',
+                          tagColors[index % tagColors.length]
+                        )}
+                      >
                         {tag}
                       </Badge>
                     ))}
