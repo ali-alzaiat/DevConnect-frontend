@@ -9,4 +9,8 @@
 export type GetAllArticlesParams = {
   page?: number;
   limit?: number;
+  /**
+   * Search articles by title or description
+   */
+  q?: string;
 };

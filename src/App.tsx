@@ -16,6 +16,7 @@ const Articles = lazy(() => import('./components/articles/Articles'));
 const ArticleDetails = lazy(() => import('./components/articles/ArticleDetails/ArticleDetails'));
 const Preferences = lazy(() => import('./components/Settings/Preferences'));
 const Profile = lazy(() => import('./components/profile/Profile'));
+const Explore = lazy(() => import('./components/explore/Explore'));
 const Login = lazy(() => import('./components/login/Login'));
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
             <Route path="/projects/:id" element={<ProjectDetails />} />
             <Route path="/snippets" element={<Snippets />} />
             <Route path="/snippets/:id" element={<SnippetDetails />} />
-            <Route path="/explore" element={<div>Explore</div>} />
+            <Route path="/explore" element={<Explore />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Preferences />} />
           </Route>

@@ -24,12 +24,12 @@ export const getFindAllUsersResponseMock = (): FindAllUsers200 => ({
   ...{
     data: faker.helpers.arrayElement([
       Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
-        meta: {
-          page: faker.number.float({ fractionDigits: 2 }),
-          limit: faker.number.float({ fractionDigits: 2 }),
-          total: faker.number.float({ fractionDigits: 2 }),
-          totalPages: faker.number.float({ fractionDigits: 2 })
-        }
+        id: faker.number.float({ fractionDigits: 2 }),
+        name: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        email: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        role: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+        preferences: {}
       })),
       undefined
     ])

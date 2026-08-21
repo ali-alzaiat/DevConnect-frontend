@@ -6,7 +6,8 @@
  * OpenAPI spec version: 1.0
  */
 import type { PaginatedResponseDto } from './paginatedResponseDto';
+import type { UserResponseDTO } from './userResponseDTO';
 
 export type FindAllUsers200 = PaginatedResponseDto & {
-  data?: PaginatedResponseDto[];
+  data?: UserResponseDTO[];
 };
