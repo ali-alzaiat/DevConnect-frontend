@@ -21,7 +21,7 @@ const Home = () => {
       icon: <LayoutDashboard className="w-8 h-8" />,
       iconClassName: 'bg-brand-tint text-in-brand',
       onClick: () => {
-        navigate('/projects/create');
+        navigate('/projects');
       }
     },
     {

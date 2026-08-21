@@ -9,7 +9,6 @@ import { CustomSpinner } from './components/general/CustomSpinner';
 
 const Home = lazy(() => import('./components/home/Home'));
 const Projects = lazy(() => import('./components/projects/Projects'));
-const NewProject = lazy(() => import('./components/projects/NewProject/NewProject'));
 const ProjectDetails = lazy(() => import('./components/projects/ProjectDetails/ProjectDetails'));
 const Snippets = lazy(() => import('./components/snippets/Snippets'));
 const SnippetDetails = lazy(() => import('./components/snippets/SnippetDetails/SnippetDetails'));
@@ -39,7 +38,6 @@ function App() {
             <Route path="/articles" element={<Articles />} />
             <Route path="/articles/:id" element={<ArticleDetails />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/create" element={<NewProject />} />
             <Route path="/projects/:id" element={<ProjectDetails />} />
             <Route path="/snippets" element={<Snippets />} />
             <Route path="/snippets/:id" element={<SnippetDetails />} />

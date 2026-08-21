@@ -2,6 +2,13 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription
+} from '@/components/ui/dialog';
+import {
   Form,
   FormControl,
   FormField,
@@ -11,17 +18,22 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 import { useCreateProject } from '@/hooks/api/useCreateProject';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
-import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 
 const formSchema = z.object({
   title: z.string().min(1, 'Title is required').max(50, 'Title must be less than 50 characters'),
   description: z.string().max(200, 'Description must be less than 200 characters')
 });
 
-const NewProject = () => {
+type CreateProjectDialogProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+};
+
+const CreateProjectDialog = ({ open, onOpenChange }: CreateProjectDialogProps) => {
   const navigate = useNavigate();
   const { mutateAsync: createProject, isPending } = useCreateProject();
   const form = useForm({
@@ -36,6 +48,8 @@ const NewProject = () => {
     try {
       const project = await createProject({ data });
       toast.success('Project created successfully');
+      form.reset();
+      onOpenChange(false);
       navigate(`/projects/${project.id}`);
     } catch {
       toast.error('Failed to create project');
@@ -43,19 +57,19 @@ const NewProject = () => {
   };
 
   return (
-    <div className="create-project-form px-3 flex flex-col w-full h-full justify-center items-center bg-background">
-      <Breadcrumbs
-        items={[{ label: 'Projects', href: '/projects' }, { label: 'Create New Project' }]}
-      />
-      <div className="form-container bg-card p-6 rounded-lg shadow-md w-full max-w-lg">
-        <h1 className="text-3xl mb-4 font-bold">Create a New Project</h1>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-xl">
+        <DialogHeader>
+          <DialogTitle>Create New Project</DialogTitle>
+          <DialogDescription>Start a team project with Kanban boards.</DialogDescription>
+        </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="title"
               render={({ field }) => (
-                <FormItem className="mb-6">
+                <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
                     <Input placeholder="Enter project title" {...field} />
@@ -68,11 +82,11 @@ const NewProject = () => {
               control={form.control}
               name="description"
               render={({ field }) => (
-                <FormItem className="mb-6">
+                <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Textarea
-                      className="w-full h-24 border rounded-md p-2"
+                      className="w-full h-24"
                       placeholder="Enter project description"
                       {...field}
                     />
@@ -81,14 +95,19 @@ const NewProject = () => {
                 </FormItem>
               )}
             />
-            <button type="submit" className="button" disabled={isPending}>
-              {isPending ? 'Creating...' : 'Create Project'}
-            </button>
+            <div className="flex justify-end gap-3 pt-2">
+              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+                Cancel
+              </Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? 'Creating...' : 'Create Project'}
+              </Button>
+            </div>
           </form>
         </Form>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 
-export default NewProject;
+export default CreateProjectDialog;
