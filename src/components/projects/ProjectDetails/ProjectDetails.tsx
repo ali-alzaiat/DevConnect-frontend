@@ -6,6 +6,7 @@ import ProjectDetailsContent from './ProjectDetailsContent';
 import { useGetProjectById } from '@/api/generated/projects/projects';
 import { CustomSpinner } from '@/components/general/CustomSpinner';
 import EmptyContent from '@/components/general/EmptyContent';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 
 const ProjectDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +15,9 @@ const ProjectDetails = () => {
   if (isLoading) {
     return (
       <div className="project-details">
+        <Breadcrumbs
+          items={[{ label: 'Projects', href: '/projects' }, { label: 'Project Details' }]}
+        />
         <Header title="Project Details" description="" />
         <CustomSpinner />
       </div>
@@ -23,6 +27,9 @@ const ProjectDetails = () => {
   if (isError || !project) {
     return (
       <div className="project-details">
+        <Breadcrumbs
+          items={[{ label: 'Projects', href: '/projects' }, { label: 'Project Details' }]}
+        />
         <Header title="Project Details" description="" />
         <EmptyContent
           title="Something went wrong"
@@ -37,6 +44,7 @@ const ProjectDetails = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="project-details">
+        <Breadcrumbs items={[{ label: 'Projects', href: '/projects' }, { label: project.title }]} />
         <Header title={project.title} description={`by ${ownerName}`} />
         <ProjectDetailsContent tasks={project.tasks ?? []} />
       </div>
