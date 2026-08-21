@@ -14,6 +14,18 @@ customInstance.interceptors.request.use((config) => {
   return config;
 });
 
+// Handle 401 responses — clear token and reload to trigger redirect
+customInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (axios.isAxiosError(error) && error.response?.status === 401) {
+      localStorage.removeItem('accessToken');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
 // Export a wrapper function that Orval will use
 export const customFetch = async <T>(
   config: AxiosRequestConfig,
