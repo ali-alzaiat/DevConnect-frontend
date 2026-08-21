@@ -92,6 +92,11 @@ const Login = () => {
               <Button type="submit" className="w-full" disabled={isPending}>
                 {isPending ? 'Logging in...' : 'Login'}
               </Button>
+              <div className="flex items-center justify-center text-secondary">
+                <Link to="/forgot-password" className="text-brand">
+                  Forgot password?
+                </Link>
+              </div>
               <div className="flex items-center justify-center gap-2 text-secondary">
                 <p>Don't have an account?</p>
                 <Link to="/register" className="text-brand">

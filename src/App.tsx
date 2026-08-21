@@ -16,6 +16,8 @@ const Articles = lazy(() => import('./components/articles/Articles'));
 const ArticleDetails = lazy(() => import('./components/articles/ArticleDetails/ArticleDetails'));
 const Preferences = lazy(() => import('./components/Settings/Preferences'));
 const Profile = lazy(() => import('./components/profile/Profile'));
+const ForgotPassword = lazy(() => import('./components/ForgotPassword/ForgotPassword'));
+const ResetPassword = lazy(() => import('./components/ResetPassword/ResetPassword'));
 const Login = lazy(() => import('./components/login/Login'));
 
 function App() {
@@ -48,8 +50,8 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SignUp />} />
-        <Route path="/forgot-password" element={<div>Forgot Password</div>} />
-        <Route path="/reset-password" element={<div>Reset Password</div>} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </Suspense>
   );
