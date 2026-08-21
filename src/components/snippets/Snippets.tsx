@@ -11,6 +11,7 @@ import OverflowTooltip from '@/components/general/OverflowTooltip';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { Badge } from '@/components/ui/badge';
 import { timeAgo } from '@/lib/time-ago';
+import { hashString } from '@/lib/utils';
 import clsx from 'clsx';
 
 const tagColors = [
@@ -21,14 +22,6 @@ const tagColors = [
   'bg-article-tint text-in-article',
   'bg-brand-tint text-in-brand'
 ];
-
-function hashString(str: string): number {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = (hash * 31 + str.charCodeAt(i)) | 0;
-  }
-  return Math.abs(hash);
-}
 
 const Snippets = () => {
   const navigate = useNavigate();
