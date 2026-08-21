@@ -22,6 +22,14 @@ const tagColors = [
   'bg-brand-tint text-in-brand'
 ];
 
+function hashString(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash * 31 + str.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
+}
+
 const Snippets = () => {
   const navigate = useNavigate();
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
@@ -104,7 +112,7 @@ const Snippets = () => {
                         key={tag}
                         className={clsx(
                           'text-xs border-transparent',
-                          tagColors[tag.charCodeAt(0) % tagColors.length]
+                          tagColors[hashString(tag) % tagColors.length]
                         )}
                       >
                         {tag}
