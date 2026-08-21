@@ -1,9 +1,13 @@
-import { useNavigate } from 'react-router'
-import Card from '../general/Card'
-import { Code, LayoutDashboard, NotebookText, Plus } from 'lucide-react'
+import { useNavigate } from 'react-router';
+import Card from '../general/Card';
+import { Code, LayoutDashboard, NotebookText, Plus } from 'lucide-react';
+import { useCheckLoginStatus } from '@/api/generated/auth/auth';
 
 const Home = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { data: user } = useCheckLoginStatus();
+  const firstName = user?.name?.split(' ')[0] ?? 'there';
+
   const cards = [
     {
       title: 'New Project',
@@ -17,7 +21,7 @@ const Home = () => {
       icon: <LayoutDashboard className="w-8 h-8" />,
       iconClassName: 'bg-brand-tint text-in-brand',
       onClick: () => {
-        navigate('/projects/create')
+        navigate('/projects/create');
       }
     },
     {
@@ -31,7 +35,7 @@ const Home = () => {
       ),
       icon: <NotebookText className="w-8 h-8" />,
       iconClassName: 'bg-article-tint text-in-article',
-      onClick: () => {}
+      onClick: () => navigate('/articles')
     },
     {
       title: 'Share Snippet',
@@ -44,19 +48,16 @@ const Home = () => {
           <span>Share</span>
         </div>
       ),
-      onClick: () => {}
+      onClick: () => navigate('/snippets')
     }
-  ]
+  ];
 
   return (
     <div className="home-container flex flex-col bg-background h-full">
       <div className="home-container__header w-full p-2">
-        <p className="text-brand font-bold text-xl">Good morning, Alex</p>
+        <p className="text-brand font-bold text-xl">Good morning, {firstName}</p>
         <h1 className="text-4xl font-bold mb-4">What are you building today?</h1>
       </div>
-      <p className="home-container__notification-header px-4 text-lg text-muted-foreground">
-        3 new comments on your snippet · 1 collaboration request
-      </p>
       <div className="home-container__quick-actions p-4">
         <p className="text-2xl font-semibold">Quick actions</p>
         <div className="cards-container mt-6 gap-4 w-full px-3 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] place-items-center">
@@ -74,7 +75,7 @@ const Home = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
