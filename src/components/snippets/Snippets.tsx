@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Header from '../general/header';
-import { Code, Copy } from 'lucide-react';
+import { Code } from 'lucide-react';
 import Card from '../general/Card';
 import { useGetAllSnippets } from '@/api/generated/snippets/snippets';
 import { CustomSpinner } from '@/components/general/CustomSpinner';
@@ -64,7 +64,7 @@ const Snippets = () => {
         buttonText="Create New Snippet"
         description="Save, share, and discover reusable code snippets."
       />
-      <div className="mt-6 grid gap-4 flex-row w-full px-3 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+      <div className="mt-6 grid gap-4 flex-row w-full px-3 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
         {snippets.map((snippet) => (
           <Card
             key={snippet.id}
@@ -76,7 +76,7 @@ const Snippets = () => {
             }}
             iconClassName="bg-snippet-tint text-in-snippet"
             footer={
-              <div className="flex items-center justify-between w-full">
+              <div className="flex items-center w-full">
                 <div className="flex items-center gap-2">
                   {snippet.tags?.slice(0, 2).map((tag) => (
                     <Badge key={tag} variant="secondary" className="text-xs">
@@ -84,9 +84,6 @@ const Snippets = () => {
                     </Badge>
                   ))}
                 </div>
-                <span className="flex items-center gap-1.5 text-muted text-sm">
-                  <Copy className="size-4" />
-                </span>
               </div>
             }
           />
