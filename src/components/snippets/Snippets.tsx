@@ -99,12 +99,12 @@ const Snippets = () => {
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-3 text-muted text-xs">
                   <div className="flex items-center gap-2">
-                    {snippet.tags?.slice(0, 2).map((tag, index) => (
+                    {snippet.tags?.slice(0, 2).map((tag) => (
                       <Badge
                         key={tag}
                         className={clsx(
                           'text-xs border-transparent',
-                          tagColors[index % tagColors.length]
+                          tagColors[tag.charCodeAt(0) % tagColors.length]
                         )}
                       >
                         {tag}
