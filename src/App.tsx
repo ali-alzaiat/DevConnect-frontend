@@ -20,16 +20,13 @@ const Profile = lazy(() => import('./components/profile/Profile'));
 const Login = lazy(() => import('./components/login/Login'));
 
 function App() {
-  const { data: user, isError, isLoading, isRefetching } = useCheckLoginStatus();
+  const { data: user, isLoading } = useCheckLoginStatus();
   const hasToken = !!localStorage.getItem('accessToken');
 
   if (isLoading) return <CustomSpinner fullPage />;
 
-  const hideWhileRefetching = hasToken && isError && isRefetching;
-  if (hideWhileRefetching) return <CustomSpinner fullPage />;
-
   const isAuthenticated = user != null;
-  const showProtected = isAuthenticated || (!isError && isLoading);
+  const showProtected = isAuthenticated || hasToken;
 
   return (
     <Suspense fallback={null}>
