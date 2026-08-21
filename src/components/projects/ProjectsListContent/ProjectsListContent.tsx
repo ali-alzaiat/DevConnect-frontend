@@ -1,5 +1,5 @@
 import Card from '@/components/general/Card';
-import { CheckIcon, UsersIcon, ClockIcon } from 'lucide-react';
+import { CheckIcon, ClockIcon } from 'lucide-react';
 import InitialsAvatar from '@/components/general/InitialsAvatar';
 import { useGetAllProjects } from '@/api/generated/projects/projects';
 import { useNavigate } from 'react-router';
@@ -56,13 +56,15 @@ const ProjectsListContent = () => {
           iconClassName="!p-0"
           footer={
             <div className="flex items-center justify-between w-full">
-              <div className="flex items-center gap-3 text-disabled text-xs">
+              <div className="flex items-center gap-3 text-muted text-xs">
+                <InitialsAvatar
+                  name={(project.owner as { name?: string })?.name ?? 'Unknown'}
+                  index={project.id}
+                  className="size-5"
+                  textSize="text-[10px]"
+                />
                 <span className="flex items-center gap-1">
                   <CheckIcon className="size-3" /> {project.tasks?.length ?? 0} tasks
-                </span>
-                <span className="flex items-center gap-1">
-                  <UsersIcon className="size-3" />{' '}
-                  {(project.owner as { name?: string })?.name ?? 'No owner'}
                 </span>
                 <span className="flex items-center gap-1">
                   <ClockIcon className="size-3" /> {timeAgo(project.updatedAt)}

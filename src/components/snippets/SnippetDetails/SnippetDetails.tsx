@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import { useGetSnippetById } from '@/api/generated/snippets/snippets';
 import { CustomSpinner } from '@/components/general/CustomSpinner';
 import EmptyContent from '@/components/general/EmptyContent';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 
 const SnippetDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +15,9 @@ const SnippetDetails = () => {
   if (isLoading) {
     return (
       <div className="snippet-details">
+        <Breadcrumbs
+          items={[{ label: 'Snippets', href: '/snippets' }, { label: 'Snippet Details' }]}
+        />
         <Header title="Snippet Details" description="" />
         <CustomSpinner />
       </div>
@@ -23,6 +27,9 @@ const SnippetDetails = () => {
   if (isError || !snippet) {
     return (
       <div className="snippet-details">
+        <Breadcrumbs
+          items={[{ label: 'Snippets', href: '/snippets' }, { label: 'Snippet Details' }]}
+        />
         <Header title="Snippet Details" description="" />
         <EmptyContent
           title="Something went wrong"
@@ -39,6 +46,7 @@ const SnippetDetails = () => {
 
   return (
     <div className="snippet-details">
+      <Breadcrumbs items={[{ label: 'Snippets', href: '/snippets' }, { label: snippetName }]} />
       <Header title={snippetName} description={snippetDescription} />
       <div className="flex gap-2 mt-4">
         {snippetTags.map((tag: string) => (

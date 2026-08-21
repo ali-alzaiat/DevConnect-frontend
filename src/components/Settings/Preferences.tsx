@@ -2,6 +2,7 @@ import { Moon } from 'lucide-react';
 import Header from '../general/header';
 import { Switch } from '../ui/switch';
 import { useTheme } from '../../hooks/useTheme';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 
 const Preferences = () => {
   const { theme, setTheme } = useTheme();
@@ -29,6 +30,7 @@ const Preferences = () => {
 
   return (
     <div className="px-3">
+      <Breadcrumbs items={[{ label: 'Settings' }]} />
       <Header title="Preferences" description="Customize your DevConnect experience." />
       <div>
         <h2 className="text-xl font-semi-bold mb-4">Theme</h2>
