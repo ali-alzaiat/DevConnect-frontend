@@ -14,6 +14,7 @@ const ProjectDetails = lazy(() => import('./components/projects/ProjectDetails/P
 const Snippets = lazy(() => import('./components/snippets/Snippets'));
 const SnippetDetails = lazy(() => import('./components/snippets/SnippetDetails/SnippetDetails'));
 const Preferences = lazy(() => import('./components/Settings/Preferences'));
+const Profile = lazy(() => import('./components/profile/Profile'));
 const Login = lazy(() => import('./components/login/Login'));
 
 function App() {
@@ -43,7 +44,7 @@ function App() {
             <Route path="/snippets" element={<Snippets />} />
             <Route path="/snippets/:id" element={<SnippetDetails />} />
             <Route path="/explore" element={<div>Explore</div>} />
-            <Route path="/profile" element={<div>Profile</div>} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Preferences />} />
           </Route>
         </Route>
