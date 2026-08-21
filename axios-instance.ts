@@ -14,11 +14,15 @@ customInstance.interceptors.request.use((config) => {
   return config;
 });
 
-// Handle 401 responses — clear token and reload to trigger redirect
+// Handle 401 responses — clear token and reload to trigger redirect,
+// but only when the request actually carried a token (session expiry).
+// Requests without a token (e.g. /auth/me on the login page, failed
+// login attempts) must reject normally so pages don't reload in a loop.
 customInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (axios.isAxiosError(error) && error.response?.status === 401) {
+    const hadToken = axios.isAxiosError(error) && !!error.config?.headers?.Authorization;
+    if (axios.isAxiosError(error) && error.response?.status === 401 && hadToken) {
       localStorage.removeItem('accessToken');
       window.location.href = '/login';
     }
