@@ -30,7 +30,11 @@ export const getGetAllArticlesResponseMock = (): GetAllArticles200 => ({
         content: faker.string.alpha({ length: { min: 10, max: 20 } }),
         author: {},
         createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
-        updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z'
+        updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+        permission: faker.helpers.arrayElement([
+          faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+          undefined
+        ])
       })),
       undefined
     ])
@@ -47,6 +51,10 @@ export const getCreateArticleResponseMock = (
   author: {},
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  permission: faker.helpers.arrayElement([
+    faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+    undefined
+  ]),
   ...overrideResponse
 });
 
@@ -60,6 +68,10 @@ export const getGetArticleByIdResponseMock = (
   author: {},
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  permission: faker.helpers.arrayElement([
+    faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+    undefined
+  ]),
   ...overrideResponse
 });
 
@@ -73,6 +85,10 @@ export const getUpdateArticleResponseMock = (
   author: {},
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  permission: faker.helpers.arrayElement([
+    faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+    undefined
+  ]),
   ...overrideResponse
 });
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import Card from '@/components/general/Card';
 import InitialsAvatar from '@/components/general/InitialsAvatar';
 import OverflowTooltip from '@/components/general/OverflowTooltip';
@@ -11,6 +12,7 @@ import type { ResultsProps } from './types';
 
 const SnippetsResults = ({ query }: ResultsProps) => {
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
   const { data, isLoading, isError } = useGetAllSnippets({
     page,
     limit: PAGE_SIZE,
@@ -39,6 +41,7 @@ const SnippetsResults = ({ query }: ResultsProps) => {
         {snippets.map((snippet) => (
           <Card
             key={snippet.id}
+            onClick={() => navigate(`/snippets/${snippet.id}`)}
             title={snippet.name}
             description={<OverflowTooltip text={String(snippet.description ?? '')} />}
             icon={

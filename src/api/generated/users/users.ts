@@ -25,7 +25,8 @@ import type {
   CreateUserDto,
   FindAllUsers200,
   FindAllUsersParams,
-  UpdateUserDto
+  UpdateUserDto,
+  UserResponseDTO
 } from '../../model';
 
 import { customFetch } from '../../../../axios-instance';
@@ -112,7 +113,7 @@ export const useCreateUser = <TError = unknown, TContext = unknown>(
   return useMutation(getCreateUserMutationOptions(options), queryClient);
 };
 /**
- * @summary Get all users with pagination
+ * @summary Get all users with pagination (admin only)
  */
 export const findAllUsers = (
   params?: FindAllUsersParams,
@@ -194,7 +195,7 @@ export function useFindAllUsers<TData = Awaited<ReturnType<typeof findAllUsers>>
   queryClient?: QueryClient
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 /**
- * @summary Get all users with pagination
+ * @summary Get all users with pagination (admin only)
  */
 
 export function useFindAllUsers<TData = Awaited<ReturnType<typeof findAllUsers>>, TError = unknown>(
@@ -343,14 +344,14 @@ export const useDeleteProfile = <TError = unknown, TContext = unknown>(
   return useMutation(getDeleteProfileMutationOptions(options), queryClient);
 };
 /**
- * @summary Get a user by ID
+ * @summary Get a user by ID (admin only)
  */
 export const findUserByID = (
   id: number,
   options?: SecondParameter<typeof customFetch>,
   signal?: AbortSignal
 ) => {
-  return customFetch<void>({ url: `/v1/user/id/${id}`, method: 'GET', signal }, options);
+  return customFetch<UserResponseDTO>({ url: `/v1/user/id/${id}`, method: 'GET', signal }, options);
 };
 
 export const getFindUserByIDQueryKey = (id: number) => {
@@ -428,7 +429,7 @@ export function useFindUserByID<TData = Awaited<ReturnType<typeof findUserByID>>
   queryClient?: QueryClient
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 /**
- * @summary Get a user by ID
+ * @summary Get a user by ID (admin only)
  */
 
 export function useFindUserByID<TData = Awaited<ReturnType<typeof findUserByID>>, TError = void>(

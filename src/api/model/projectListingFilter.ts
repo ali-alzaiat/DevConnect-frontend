@@ -5,12 +5,13 @@
  * The DevConnect API documentation
  * OpenAPI spec version: 1.0
  */
+import type { ProjectListingFilterSortOrder } from './projectListingFilterSortOrder';
 
 export interface ProjectListingFilter {
   page?: number;
   limit?: number;
   sortBy?: string;
-  sortOrder?: string;
+  sortOrder?: ProjectListingFilterSortOrder;
   searchTerm?: string;
   updatedAtFrom?: string;
   updatedAtTo?: string;

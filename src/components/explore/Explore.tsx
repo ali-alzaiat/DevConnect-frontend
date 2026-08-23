@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import clsx from 'clsx';
 import { Search } from 'lucide-react';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
+import { useCheckLoginStatus } from '@/api/generated/auth/auth';
 import UsersResults from './UsersResults';
 import ProjectsResults from './ProjectsResults';
 import ArticlesResults from './ArticlesResults';
@@ -22,6 +23,11 @@ const Explore = () => {
   const [query, setQuery] = useState('');
   const [activeTab, setActiveTab] = useState('projects');
   const debouncedQuery = useDebouncedValue(query.trim(), 300);
+  const { data: user } = useCheckLoginStatus();
+  const visibleTabs = tabs.filter((tab) => tab.value !== 'users' || user?.role === 'ADMIN');
+  const effectiveTab = visibleTabs.some((t) => t.value === activeTab)
+    ? activeTab
+    : (visibleTabs[0]?.value ?? 'projects');
 
   return (
     <div className="explore-container">
@@ -40,21 +46,27 @@ const Explore = () => {
         />
       </div>
       <div className="flex gap-2 px-3 mt-4">
-        {tabs.map((tab) => (
+        {visibleTabs.map((tab) => (
           <Button
             key={tab.value}
             variant="ghost"
-            className={tabButtonClass(activeTab === tab.value)}
+            className={tabButtonClass(effectiveTab === tab.value)}
             onClick={() => setActiveTab(tab.value)}
           >
             {tab.label}
           </Button>
         ))}
       </div>
-      {activeTab === 'users' && <UsersResults key={debouncedQuery} query={debouncedQuery} />}
-      {activeTab === 'projects' && <ProjectsResults key={debouncedQuery} query={debouncedQuery} />}
-      {activeTab === 'articles' && <ArticlesResults key={debouncedQuery} query={debouncedQuery} />}
-      {activeTab === 'snippets' && <SnippetsResults key={debouncedQuery} query={debouncedQuery} />}
+      {effectiveTab === 'users' && <UsersResults key={debouncedQuery} query={debouncedQuery} />}
+      {effectiveTab === 'projects' && (
+        <ProjectsResults key={debouncedQuery} query={debouncedQuery} />
+      )}
+      {effectiveTab === 'articles' && (
+        <ArticlesResults key={debouncedQuery} query={debouncedQuery} />
+      )}
+      {effectiveTab === 'snippets' && (
+        <SnippetsResults key={debouncedQuery} query={debouncedQuery} />
+      )}
     </div>
   );
 };

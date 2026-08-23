@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import Card from '@/components/general/Card';
 import InitialsAvatar from '@/components/general/InitialsAvatar';
 import OverflowTooltip from '@/components/general/OverflowTooltip';
@@ -11,6 +12,7 @@ import type { ResultsProps } from './types';
 
 const ProjectsResults = ({ query }: ResultsProps) => {
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
   const { data, isLoading, isError } = useGetAllProjects({
     page,
     limit: PAGE_SIZE,
@@ -39,6 +41,7 @@ const ProjectsResults = ({ query }: ResultsProps) => {
         {projects.map((project) => (
           <Card
             key={project.id}
+            onClick={() => navigate(`/projects/${project.id}`)}
             title={project.title}
             description={<OverflowTooltip text={project.description ?? ''} />}
             icon={

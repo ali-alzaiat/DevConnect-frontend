@@ -8,6 +8,7 @@
 
 export * from './articleResponseDto';
 export * from './articleResponseDtoAuthor';
+export * from './articleResponseDtoPermission';
 export * from './createArticleDto';
 export * from './createProjectDto';
 export * from './createSnippetDTO';
@@ -25,10 +26,13 @@ export * from './loginResponseDtoUser';
 export * from './paginatedResponseDto';
 export * from './paginationMetaDto';
 export * from './projectListingFilter';
+export * from './projectListingFilterSortOrder';
 export * from './projectResponseDto';
 export * from './projectResponseDtoOwner';
+export * from './projectResponseDtoPermission';
 export * from './signupDto';
 export * from './snippetResponseDTO';
+export * from './snippetResponseDTOPermission';
 export * from './task';
 export * from './updateArticleDto';
 export * from './updateProjectDto';
