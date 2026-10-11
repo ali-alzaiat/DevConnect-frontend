@@ -1,6 +1,10 @@
 import { ExploreTab } from './types';
 
-export const PAGE_SIZE = 9;
+/**
+ * Divisible by 2, 3, and 4 so the last page fills whole rows
+ * for every common column count of the auto-fill grid.
+ */
+export const PAGE_SIZE = 12;
 
 export const tabs: { value: ExploreTab; label: string }[] = [
   { value: 'users', label: 'Users' },

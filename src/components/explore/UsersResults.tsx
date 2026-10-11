@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import Card from '@/components/general/Card';
 import InitialsAvatar from '@/components/general/InitialsAvatar';
 import EmptyContent from '@/components/general/EmptyContent';
@@ -10,6 +11,7 @@ import type { ResultsProps } from './types';
 
 const UsersResults = ({ query }: ResultsProps) => {
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
   const { data, isLoading, isError } = useFindAllUsers({
     page,
     limit: PAGE_SIZE,
@@ -40,6 +42,7 @@ const UsersResults = ({ query }: ResultsProps) => {
             key={user.id}
             title={user.name}
             description={user.email}
+            onClick={() => navigate(`/users/${user.id}`)}
             icon={
               <InitialsAvatar
                 name={user.name}

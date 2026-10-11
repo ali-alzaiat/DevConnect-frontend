@@ -5,6 +5,7 @@
  * The DevConnect API documentation
  * OpenAPI spec version: 1.0
  */
+import type { SnippetResponseDTOPermission } from './snippetResponseDTOPermission';
 
 export interface SnippetResponseDTO {
   id: number;
@@ -14,4 +15,5 @@ export interface SnippetResponseDTO {
   description?: string;
   createdAt: string;
   updatedAt: string;
+  permission?: SnippetResponseDTOPermission;
 }

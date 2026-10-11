@@ -10,7 +10,7 @@ import { faker } from '@faker-js/faker';
 import { HttpResponse, http } from 'msw';
 import type { RequestHandlerOptions } from 'msw';
 
-import type { FindAllUsers200 } from '../../model';
+import type { FindAllUsers200, UserResponseDTO } from '../../model';
 
 export const getFindAllUsersResponseMock = (): FindAllUsers200 => ({
   ...{
@@ -34,6 +34,18 @@ export const getFindAllUsersResponseMock = (): FindAllUsers200 => ({
       undefined
     ])
   }
+});
+
+export const getFindUserByIDResponseMock = (
+  overrideResponse: Partial<Extract<UserResponseDTO, object>> = {}
+): UserResponseDTO => ({
+  id: faker.number.float({ fractionDigits: 2 }),
+  name: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  email: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  role: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  preferences: {},
+  ...overrideResponse
 });
 
 export const getCreateUserMockHandler = (
@@ -119,18 +131,23 @@ export const getDeleteProfileMockHandler = (
 
 export const getFindUserByIDMockHandler = (
   overrideResponse?:
-    | void
-    | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<void> | void),
+    | UserResponseDTO
+    | ((
+        info: Parameters<Parameters<typeof http.get>[1]>[0]
+      ) => Promise<UserResponseDTO> | UserResponseDTO),
   options?: RequestHandlerOptions
 ) => {
   return http.get(
     '*/v1/user/id/:id',
     async (info: Parameters<Parameters<typeof http.get>[1]>[0]) => {
-      if (typeof overrideResponse === 'function') {
-        await overrideResponse(info);
-      }
-
-      return new HttpResponse(null, { status: 200 });
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getFindUserByIDResponseMock(),
+        { status: 200 }
+      );
     },
     options
   );

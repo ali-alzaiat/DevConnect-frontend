@@ -32,7 +32,11 @@ export const getGetAllSnippetsResponseMock = (): GetAllSnippets200 => ({
           undefined
         ]),
         createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
-        updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z'
+        updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+        permission: faker.helpers.arrayElement([
+          faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+          undefined
+        ])
       })),
       undefined
     ])
@@ -54,6 +58,10 @@ export const getCreateSnippetResponseMock = (
   ]),
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  permission: faker.helpers.arrayElement([
+    faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+    undefined
+  ]),
   ...overrideResponse
 });
 
@@ -72,6 +80,10 @@ export const getGetSnippetByIdResponseMock = (
   ]),
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  permission: faker.helpers.arrayElement([
+    faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+    undefined
+  ]),
   ...overrideResponse
 });
 
@@ -90,5 +102,9 @@ export const getUpdateSnippetResponseMock = (
   ]),
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  permission: faker.helpers.arrayElement([
+    faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+    undefined
+  ]),
   ...overrideResponse
 });

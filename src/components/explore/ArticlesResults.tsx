@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import Card from '@/components/general/Card';
 import InitialsAvatar from '@/components/general/InitialsAvatar';
 import OverflowTooltip from '@/components/general/OverflowTooltip';
@@ -11,6 +12,7 @@ import type { ResultsProps } from './types';
 
 const ArticlesResults = ({ query }: ResultsProps) => {
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
   const { data, isLoading, isError } = useGetAllArticles({
     page,
     limit: PAGE_SIZE,
@@ -39,6 +41,7 @@ const ArticlesResults = ({ query }: ResultsProps) => {
         {articles.map((article) => (
           <Card
             key={article.id}
+            onClick={() => navigate(`/articles/${article.id}`)}
             title={article.title}
             description={<OverflowTooltip text={article.description ?? ''} />}
             icon={
