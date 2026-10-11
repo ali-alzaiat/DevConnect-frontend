@@ -16,6 +16,7 @@ const Articles = lazy(() => import('./components/articles/Articles'));
 const ArticleDetails = lazy(() => import('./components/articles/ArticleDetails/ArticleDetails'));
 const Preferences = lazy(() => import('./components/Settings/Preferences'));
 const Profile = lazy(() => import('./components/profile/Profile'));
+const Chats = lazy(() => import('./components/chats/Chats'));
 const Explore = lazy(() => import('./components/explore/Explore'));
 const UserDetail = lazy(() => import('./components/users/UserDetail/UserDetail'));
 const Login = lazy(() => import('./components/login/Login'));
@@ -36,7 +37,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/chats" element={<div>Chats</div>} />
+            <Route path="/chats" element={<Chats />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/articles/:id" element={<ArticleDetails />} />
             <Route path="/projects" element={<Projects />} />
