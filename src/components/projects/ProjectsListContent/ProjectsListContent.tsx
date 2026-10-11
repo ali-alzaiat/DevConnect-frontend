@@ -29,7 +29,7 @@ const ProjectsListContent = () => {
   }
 
   return (
-    <div className="mt-6 grid gap-4 w-full px-3 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+    <div className="mt-6 grid gap-4 w-full px-3 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
       {projects.data.map((project) => (
         <Card
           key={project.id}

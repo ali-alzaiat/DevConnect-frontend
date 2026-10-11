@@ -31,6 +31,10 @@ export const getCreateProjectResponseMock = (
   owner: faker.helpers.arrayElement([{}, undefined]),
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  permission: faker.helpers.arrayElement([
+    faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+    undefined
+  ]),
   ...overrideResponse
 });
 
@@ -63,7 +67,11 @@ export const getGetAllProjectsResponseMock = (): GetAllProjects200 => ({
         ),
         owner: faker.helpers.arrayElement([{}, undefined]),
         createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
-        updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z'
+        updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+        permission: faker.helpers.arrayElement([
+          faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+          undefined
+        ])
       })),
       undefined
     ])
@@ -89,6 +97,10 @@ export const getGetProjectByIdResponseMock = (
   owner: faker.helpers.arrayElement([{}, undefined]),
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  permission: faker.helpers.arrayElement([
+    faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+    undefined
+  ]),
   ...overrideResponse
 });
 
@@ -111,6 +123,10 @@ export const getUpdateProjectResponseMock = (
   owner: faker.helpers.arrayElement([{}, undefined]),
   createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   updatedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  permission: faker.helpers.arrayElement([
+    faker.helpers.arrayElement(['ADMIN', 'OWNER', 'EDIT', 'SHARE', 'VIEW'] as const),
+    undefined
+  ]),
   ...overrideResponse
 });
 

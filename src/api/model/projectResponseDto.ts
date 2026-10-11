@@ -6,6 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 import type { ProjectResponseDtoOwner } from './projectResponseDtoOwner';
+import type { ProjectResponseDtoPermission } from './projectResponseDtoPermission';
 import type { Task } from './task';
 
 export interface ProjectResponseDto {
@@ -16,4 +17,5 @@ export interface ProjectResponseDto {
   owner?: ProjectResponseDtoOwner;
   createdAt: string;
   updatedAt: string;
+  permission?: ProjectResponseDtoPermission;
 }

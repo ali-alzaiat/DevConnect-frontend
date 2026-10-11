@@ -9,4 +9,8 @@
 export type GetAllSnippetsParams = {
   page?: number;
   limit?: number;
+  /**
+   * Search snippets by name, description, or tag
+   */
+  q?: string;
 };

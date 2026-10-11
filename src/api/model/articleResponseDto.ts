@@ -6,6 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 import type { ArticleResponseDtoAuthor } from './articleResponseDtoAuthor';
+import type { ArticleResponseDtoPermission } from './articleResponseDtoPermission';
 
 export interface ArticleResponseDto {
   id: number;
@@ -15,4 +16,5 @@ export interface ArticleResponseDto {
   author: ArticleResponseDtoAuthor;
   createdAt: string;
   updatedAt: string;
+  permission?: ArticleResponseDtoPermission;
 }

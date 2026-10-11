@@ -7,7 +7,7 @@
  */
 import { faker } from '@faker-js/faker';
 
-import type { FindAllUsers200 } from '../../model';
+import type { FindAllUsers200, UserResponseDTO } from '../../model';
 
 export const getFindAllUsersResponseMock = (): FindAllUsers200 => ({
   ...{
@@ -21,14 +21,26 @@ export const getFindAllUsersResponseMock = (): FindAllUsers200 => ({
   ...{
     data: faker.helpers.arrayElement([
       Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
-        meta: {
-          page: faker.number.float({ fractionDigits: 2 }),
-          limit: faker.number.float({ fractionDigits: 2 }),
-          total: faker.number.float({ fractionDigits: 2 }),
-          totalPages: faker.number.float({ fractionDigits: 2 })
-        }
+        id: faker.number.float({ fractionDigits: 2 }),
+        name: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        email: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        role: faker.string.alpha({ length: { min: 10, max: 20 } }),
+        createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+        preferences: {}
       })),
       undefined
     ])
   }
+});
+
+export const getFindUserByIDResponseMock = (
+  overrideResponse: Partial<Extract<UserResponseDTO, object>> = {}
+): UserResponseDTO => ({
+  id: faker.number.float({ fractionDigits: 2 }),
+  name: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  email: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  role: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  createdAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  preferences: {},
+  ...overrideResponse
 });

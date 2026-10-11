@@ -9,4 +9,8 @@
 export type FindAllUsersParams = {
   page?: number;
   limit?: number;
+  /**
+   * Search users by name or email
+   */
+  q?: string;
 };
