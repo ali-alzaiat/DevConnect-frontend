@@ -60,7 +60,7 @@ const Home = () => {
       </div>
       <div className="home-container__quick-actions p-4">
         <p className="text-2xl font-semibold">Quick actions</p>
-        <div className="cards-container mt-6 gap-4 w-full px-3 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] place-items-center">
+        <div className="cards-container mt-6 gap-4 w-full px-3 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] place-items-center">
           {cards.map((card) => (
             <Card
               key={card.title}

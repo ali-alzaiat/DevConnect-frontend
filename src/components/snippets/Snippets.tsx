@@ -76,7 +76,7 @@ const Snippets = () => {
         buttonText="Create New Snippet"
         description="Save, share, and discover reusable code snippets."
       />
-      <div className="mt-6 grid gap-4 w-full px-3 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+      <div className="mt-6 grid gap-4 w-full px-3 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
         {snippets.map((snippet) => (
           <Card
             key={snippet.id}
